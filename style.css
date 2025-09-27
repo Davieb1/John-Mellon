@@ -1,0 +1,330 @@
+:root {
+  --bg: #0f1115;
+  --card: #171a21;
+  --muted: #9ba3af;
+  --text: #e5e7eb;
+  --accent: #4f46e5;
+  --ring: #6366f1;
+  --radius: 16px;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial;
+  background: linear-gradient(180deg, #0d0f14, #0f1115 20% 80%, #0d0f14);
+  color: var(--text);
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: conic-gradient(from 45deg, #111, #333, #555, #111);
+}
+h1 {
+  margin: 0;
+  font-size: 20px;
+}
+.tag {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.card {
+  background: color-mix(in oklab, var(--card) 92%, black);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  margin-bottom: 24px;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 60px 20px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1600&auto=format&fit=crop")
+    center/cover no-repeat;
+  filter: brightness(0.6);
+}
+.hero > * {
+  position: relative;
+}
+
+.btn {
+  background: linear-gradient(180deg, var(--accent), #4338ca);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.select,
+.input {
+  background: #0c0f14;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+.select:focus,
+.input:focus {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.18);
+  outline: 0;
+}
+
+.product {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 20px;
+}
+.product .media {
+  aspect-ratio: 16/10;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #1e293b, #111827);
+  display: grid;
+  place-items: center;
+  color: #c7d2fe;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 16px;
+}
+.price {
+  margin-left: auto;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+/* Basket (initially hidden) */
+#basket {
+  position: fixed;
+  top: 130px;
+  right: 20px;
+  width: 320px;
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  padding: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  max-height: calc(100vh - 160px);
+  overflow: auto;
+}
+#basket.hidden {
+  display: none;
+}
+#basket h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#basket .badge {
+  background: #0c0f14;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--muted);
+}
+#basketItems {
+  font-size: 14px;
+  display: grid;
+  gap: 8px;
+}
+#basketItems .item {
+  display: grid;
+  gap: 4px;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  background: #0b0e13;
+}
+.item-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.remove {
+  background: #1f2937;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 12px;
+}
+#basketTotal {
+  margin-top: 8px;
+  font-weight: 700;
+  text-align: right;
+}
+#placeOrder {
+  background: #16a34a;
+  width: 100%;
+  margin-top: 8px;
+}
+#clearBasket {
+  width: 100%;
+  margin-top: 8px;
+}
+.form-row {
+  display: grid;
+  gap: 6px;
+  margin-top: 8px;
+}
+.form-row label {
+  font-size: 12px;
+  color: var(--muted);
+}
+.hidden {
+  display: none;
+}
+
+/* Palette grid (max 4 cols) */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+@media (max-width: 1000px) {
+  .palette-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .product {
+    grid-template-columns: 1fr;
+  }
+  .price {
+    margin-left: 0;
+  }
+}
+@media (max-width: 760px) {
+  .palette-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 520px) {
+  .palette-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.swatch-card {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0b0e13;
+}
+.swatch {
+  height: 120px;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.swatch-body {
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+}
+.swatch-title {
+  font-weight: 700;
+  font-size: 14px;
+}
+.hex-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 13px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: #0c0f14;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+.copy-btn {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #10131a;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* Calculator */
+.calc {
+  display: grid;
+  gap: 12px;
+}
+.calc input,
+.calc select,
+.calc button {
+  width: 160px;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  inset: auto 16px 16px auto;
+  background: #0b1410;
+  color: #d1fae5;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 10px 12px;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
