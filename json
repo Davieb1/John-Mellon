@@ -1,0 +1,62 @@
+{
+  "tabs": [
+    {
+      "id": "ceiling",
+      "title": "Ceiling",
+      "products": [
+        {"brand":"Tikkurila","name":"Anti-Reflex White","finish":"Matt","sku":"AR2"},
+        {"brand":"Dulux","name":"Ultra Matt"},
+        {"brand":"Johnstone’s","name":"Ultra-Flat Matt"},
+        {"brand":"Dulux","name":"Supermatt"},
+        {"brand":"Dulux","name":"Vinyl Matt"}
+      ]
+    },
+    {
+      "id": "walls",
+      "title": "Walls",
+      "products": [
+        {"brand":"Dulux Heritage","name":"Velvet Matt"},
+        {"brand":"Crown","name":"Scrubbable Matt"},
+        {"brand":"Dulux Diamond","name":"Matt"},
+        {"brand":"Dulux Diamond","name":"Eggshell"}
+      ]
+    },
+    {
+      "id": "woodwork",
+      "title": "Woodwork",
+      "products": [
+        {"brand":"Dulux","name":"Satinwood"},
+        {"brand":"Dulux","name":"Eggshell"},
+        {"brand":"Dulux","name":"Undercoat"},
+        {"brand":"Dulux","name":"Gloss"},
+        {"brand":"Generic","name":"Clear Varnish","finish":"Gloss/Satin"},
+        {"brand":"Generic","name":"Floor Varnish"}
+      ]
+    },
+    {
+      "id": "interior",
+      "title": "Interior",
+      "systems": ["New Plaster","Plasterboard","Wood","Metal","Skirtings","Walls","Lining Paper"]
+    },
+    {
+      "id": "exterior",
+      "title": "Exterior",
+      "systems": ["Gutters / Downpipes","Soffits / Fascia Boards","Windows","Doors"]
+    },
+    {
+      "id": "taping",
+      "title": "Taping Material",
+      "groups": {
+        "Joint Fillers":["Toupret Joint Filler"],
+        "Joint Cements":["Toupret Joint Cement","Gyproc Joint Cement"],
+        "Tapes":["FibaTape Mesh","Paper Tape","Levelline Drywall Tape","Metal Tape"],
+        "Beads":["Metal Bead"]
+      }
+    },
+    {
+      "id": "heritage",
+      "title": "Dulux Heritage",
+      "toneGroups": ["Pale Tones","Mid Tones","Deep Tones","Whites"]
+    }
+  ]
+}

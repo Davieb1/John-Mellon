@@ -1,917 +1,245 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Fife Painting Co. – Demo Shop</title>
-    <style>
-        :root {
-            --brand: #234B8E;
-            /* placeholder brand */
-            --brand-2: #F1F5FB;
-            --accent: #FFB703;
-            --text: #6b6c6d;
-            --muted: #6b7280;
-            --border: #e5e7eb;
-            --danger: #b91c1c;
-            --success: #166534;
-        }
-
-        * {
-            box-sizing: border-box
-        }
-
-        body {
-            margin: 0;
-            font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Inter, sans-serif;
-            color: var(--text);
-            background: linear-gradient(180deg, #0d0f14, #0f1115 20% 80%, #0d0f14);
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 16px
-        }
-
-        /* Navbar */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: #fff;
-            border-bottom: 1px solid var(--border)
-        }
-
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 64px
-        }
-
-        .brand {
-            display: flex;
-            gap: 10px;
-            align-items: center
-        }
-
-        .brand .logo {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            background: linear-gradient(135deg, var(--brand), #3778ff)
-        }
-
-        .brand h1 {
-            font-size: 18px;
-            margin: 0;
-            font-weight: 700
-        }
-
-        nav ul {
-            display: flex;
-            gap: 18px;
-            list-style: none;
-            margin: 0;
-            padding: 0
-        }
-
-        nav a {
-            font-weight: 600;
-            color: var(--brand)
-        }
-
-        .cart-button {
-            position: relative;
-            border: 1px solid var(--brand);
-            padding: 8px 12px;
-            border-radius: 10px;
-            font-weight: 700
-        }
-
-        .badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--accent);
-            color: #000;
-            font-weight: 800;
-            border-radius: 999px;
-            padding: 2px 8px;
-            font-size: 12px;
-            border: 1px solid #0002
-        }
-
-        /* Hero */
-        .hero {
-            background: linear-gradient(180deg, var(--brand-2), #fff);
-            border-bottom: 1px solid var(--border)
-        }
-
-        .hero-inner {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 28px;
-            align-items: center;
-            padding: 40px 0
-        }
-
-        .hero h2 {
-            font-size: 40px;
-            line-height: 1.05;
-            margin: 0 0 8px 0
-        }
-
-        .hero p {
-            color: var(--muted);
-            margin: 0 0 16px 0
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--brand);
-            color: #fff;
-            padding: 12px 16px;
-            border-radius: 10px;
-            font-weight: 700;
-            border: 0
-        }
-
-        .btn.secondary {
-            background: #fff;
-            color: var(--brand);
-            border: 1px solid var(--brand)
-        }
-
-        /* Sections */
-        section {
-            padding: 36px 0;
-            border-bottom: 1px solid var(--border)
-        }
-
-        section h3 {
-            margin: 0 0 10px;
-            font-size: 26px
-        }
-
-        .hint {
-            color: var(--muted);
-            font-size: 14px
-        }
-
-        /* Catalogue / Colors */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px
-        }
-
-        @media (max-width:900px) {
-            .hero-inner {
-                grid-template-columns: 1fr
-            }
-
-            .grid {
-                grid-template-columns: repeat(2, 1fr)
-            }
-        }
-
-        @media (max-width:560px) {
-            .grid {
-                grid-template-columns: 1fr
-            }
-        }
-
-        .card {
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            overflow: hidden;
-            background: #fff
-        }
-
-        .card .swatch {
-            height: 110px;
-            width: 100%
-        }
-
-        .card .pad {
-            padding: 12px
-        }
-
-        .row {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            flex-wrap: wrap
-        }
-
-        .row.stretch>* {
-            flex: 1
-        }
-
-        .row.space {
-            justify-content: space-between
-        }
-
-        .price {
-            font-weight: 800
-        }
-
-        .input,
-        select,
-        textarea {
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 10px;
-            width: 100%
-        }
-
-        label {
-            font-size: 13px;
-            color: var(--muted)
-        }
-
-        .pill {
-            border: 1px solid var(--border);
-            border-radius: 999px;
-            padding: 4px 10px;
-            font-size: 12px;
-            color: var(--muted)
-        }
-
-        .copy {
-            cursor: pointer
-        }
-
-        /* Calculator */
-        .calc {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px
-        }
-
-        @media(max-width:900px) {
-            .calc {
-                grid-template-columns: repeat(2, 1fr)
-            }
-        }
-
-        @media(max-width:560px) {
-            .calc {
-                grid-template-columns: 1fr
-            }
-        }
-
-        .calc .field {
-            display: flex;
-            flex-direction: column;
-            gap: 6px
-        }
-
-        .calc .actions {
-            grid-column: 1/-1;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap
-        }
-
-        .result {
-            margin-top: 12px;
-            border: 1px dashed var(--border);
-            padding: 12px;
-            border-radius: 12px;
-            background: #fafafa
-        }
-
-        .ok {
-            color: var(--success);
-            font-weight: 700
-        }
-
-        /* Basket */
-        .basket {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 16px
-        }
-
-        @media(max-width:900px) {
-            .basket {
-                grid-template-columns: 1fr
-            }
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse
-        }
-
-        th,
-        td {
-            padding: 10px;
-            border-bottom: 1px solid var(--border);
-            text-align: left
-        }
-
-        tfoot td {
-            font-weight: 800
-        }
-
-        .qty {
-            display: flex;
-            align-items: center;
-            gap: 6px
-        }
-
-        .qty button {
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            background: #fff;
-            cursor: pointer
-        }
-
-        .remove {
-            color: var(--danger);
-            cursor: pointer
-        }
-
-        .muted {
-            color: var(--muted)
-        }
-
-        .checkout {
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 14px
-        }
-
-        .hidden {
-            display: none
-        }
-
-        .flag {
-            font-size: 12px;
-            color: #fff;
-            background: var(--brand);
-            padding: 4px 8px;
-            border-radius: 6px
-        }
-    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Painter Pro | Fife</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <header>
-        <div class="container nav">
-            <div class="brand">
-                <div class="logo" aria-label="Placeholder Logo"></div>
-                <h1>Fife Painting Co.</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#catalogue">Catalogue</a></li>
-                    <li><a href="#calculator">Paint Calculator</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#basket" class="cart-button">Basket <span id="cartBadge" class="badge">0</span></a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+    <!-- ====== GLOBAL NAV ====== -->
+    <header class="site-header">
+        <nav class="nav">
+            <a class="brand" href="#home">PainterPro</a>
+            <button class="nav-toggle" aria-expanded="false" aria-controls="navlinks">☰</button>
+            <ul id="navlinks" class="links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#catalogue">Paint Catalogue</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <!-- Basket -->
+            <button id="openCart" class="cart-btn" aria-label="Open basket">
+                🧺 <span id="cartCount">0</span>
+            </button>
+        </nav>
     </header>
 
-    <main>
-        <!-- Hero -->
-        <section class="hero">
-            <div class="container hero-inner">
-                <div>
-                    <h2>Your local, family-run painters in Fife</h2>
-                    <p>Premium trade paints, trusted advice, and quick collection from <strong>Markinch Train
-                            Station</strong>. Bring your walls to life.</p>
-                    <a href="#catalogue" class="btn">Shop now</a>
-                </div>
-                <div class="card">
-                    <div class="swatch" style="background:linear-gradient(135deg,#234B8E 0%, #3778ff 100%)"></div>
-                    <div class="pad">
-                        <div class="row space">
-                            <span class="pill">Demo site · JS only</span>
-                            <span class="pill">Coverage: <strong>12 m²/L</strong></span>
-                        </div>
-                        <p class="hint" style="margin-top:8px">Catalogue, calculator, colours, and basket are fully
-                            interactive without a database.</p>
+    <!-- ====== ROUTES ====== -->
+    <main id="app">
+
+        <!-- ====== HOME ====== -->
+        <section id="home" class="route route-active" aria-labelledby="home-title">
+            <h1 id="home-title" class="sr-only">Home</h1>
+
+            <!-- HERO with shop-front image slot -->
+            <div class="hero">
+                <img id="shopfront-hero" src="https://placehold.co/1600x600?text=Client+Shop+Front+Image"
+                    alt="Our shop front" />
+                <div class="hero-overlay">
+                    <h2>Professional Decorating in Fife</h2>
+                    <p>Interior • Exterior • Repairs • Colour Expertise</p>
+                    <div class="hero-ctas">
+                        <a href="#catalogue" class="btn">Browse Catalogue</a>
+                        <a href="#contact" class="btn btn-secondary">Get a Quote</a>
                     </div>
                 </div>
             </div>
+
+            <section class="home-grid">
+                <article class="card">
+                    <h3>Trusted Brands</h3>
+                    <p>Dulux, Johnstone’s, Crown, Tikkurila, Toupret, Gyproc and more.</p>
+                </article>
+                <article class="card">
+                    <h3>Calculator & Basket</h3>
+                    <p>Estimate litres, then add recommended tins to your basket in one click.</p>
+                    <a href="#catalogue" class="text-link">Open catalogue & calculator →</a>
+                </article>
+                <article class="card">
+                    <h3>Dulux Heritage</h3>
+                    <p>Explore Pale, Mid, Deep Tones and Whites with larger swatches.</p>
+                    <a href="#catalogue" class="text-link" data-go-tab="heritage">Jump to Heritage →</a>
+                </article>
+            </section>
+
+            <section class="strip">
+                <div class="strip-inner">
+                    <h3>Areas We Cover</h3>
+                    <p>Markinch • Fife and surrounding areas</p>
+                </div>
+            </section>
         </section>
 
-        <!-- Catalogue / Color Grid -->
-        <section id="catalogue" class="container">
-            <h3>Paint Catalogue</h3>
-            <p class="hint">Search across all colours (including those not currently visible). Each colour is available
-                in <strong>4 shades</strong>.</p>
-            <div class="row" style="margin:10px 0 16px">
-                <input id="searchInput" class="input" placeholder="Search colour name or hex (e.g., Ocean, #3a7)" />
-                <select id="finishFilter">
-                    <option value="">All finishes</option>
-                    <option>Matt</option>
-                    <option>Eggshell</option>
-                    <option>Satin</option>
-                </select>
+        <!-- ====== CATALOGUE ====== -->
+        <section id="catalogue" class="route" aria-labelledby="catalogue-title">
+            <h2 id="catalogue-title">Paint Catalogue</h2>
+
+            <!-- Sticky tab bar -->
+            <div class="tabs" role="tablist" aria-label="Catalogue tabs">
+                <button role="tab" class="tab is-active" data-tab="ceiling">Ceiling</button>
+                <button role="tab" class="tab" data-tab="walls">Walls</button>
+                <button role="tab" class="tab" data-tab="woodwork">Woodwork</button>
+                <button role="tab" class="tab" data-tab="interior">Interior</button>
+                <button role="tab" class="tab" data-tab="exterior">Exterior</button>
+                <button role="tab" class="tab" data-tab="taping">Taping Material</button>
+                <button role="tab" class="tab" data-tab="heritage">Dulux Heritage</button>
             </div>
-            <div id="catalogueGrid" class="grid"></div>
-        </section>
 
-        <!-- Calculator -->
-        <section id="calculator" class="container">
-            <h3>Paint Calculator</h3>
-            <p class="hint">Enter your room size. We include wall height and coats, can subtract doors/windows, and
-                optionally include the ceiling.</p>
-            <div class="calc">
-                <div class="field"><label>Width (m)</label><input id="width" class="input" type="number" min="0"
-                        step="0.01" value="4" /></div>
-                <div class="field"><label>Length (m)</label><input id="length" class="input" type="number" min="0"
-                        step="0.01" value="3" /></div>
-                <div class="field"><label>Wall Height (m)</label><input id="height" class="input" type="number" min="0"
-                        step="0.01" value="2.4" /></div>
-                <div class="field"><label>Coats</label><input id="coats" class="input" type="number" min="1" step="1"
-                        value="2" /></div>
-
-                <div class="field"><label><input id="includeCeiling" type="checkbox" checked /> Include ceiling</label>
+            <!-- Search + filters -->
+            <div class="controls">
+                <div class="search">
+                    <input id="searchInput" type="search" placeholder="Search brand or product…" />
+                    <label class="search-all">
+                        <input id="searchAll" type="checkbox" />
+                        Search all tabs
+                    </label>
                 </div>
-                <div class="field"><label>Doors (count)</label><input id="doors" class="input" type="number" min="0"
-                        step="1" value="1" /></div>
-                <div class="field"><label>Windows (count)</label><input id="windows" class="input" type="number" min="0"
-                        step="1" value="1" /></div>
-                <div class="field"><label>Coverage (m²/L)</label><input id="coverage" class="input" type="number"
-                        min="1" step="0.1" value="12" /></div>
-
-                <div class="field"><label>Door area each (m²)</label><input id="doorArea" class="input" type="number"
-                        min="0" step="0.01" value="1.6" /></div>
-                <div class="field"><label>Window area each (m²)</label><input id="windowArea" class="input"
-                        type="number" min="0" step="0.01" value="1.44" /></div>
-                <div class="field"><label>Choose colour for this room</label>
-                    <select id="calcColour" class="input"></select>
-                </div>
-                <div class="field"><label>Finish</label>
-                    <select id="calcFinish" class="input">
-                        <option>Matt</option>
-                        <option>Eggshell</option>
-                        <option>Satin</option>
+                <div class="filters">
+                    <select id="filterBrand">
+                        <option value="">All brands</option>
+                    </select>
+                    <select id="filterFinish">
+                        <option value="">All finishes</option>
+                    </select>
+                    <select id="filterUse">
+                        <option value="">All uses</option>
+                        <option value="interior">Interior</option>
+                        <option value="exterior">Exterior</option>
                     </select>
                 </div>
+            </div>
 
-                <div class="actions">
-                    <button id="calcBtn" class="btn" type="button">Calculate tins & cost</button>
-                    <button id="sendToCartBtn" class="btn secondary" type="button" disabled>Send to cart</button>
+            <!-- Calculator -->
+            <section class="calculator">
+                <h3>Paint Calculator</h3>
+                <div class="grid" id="calcGrid">
+                    <label data-ceiling-hide>Room width (m) <input id="calcWidth" type="number" step="0.01" min="0"
+                            placeholder="e.g., 4.2"></label>
+                    <label data-ceiling-hide>Room length (m) <input id="calcLength" type="number" step="0.01" min="0"
+                            placeholder="e.g., 3.6"></label>
+                    <label id="heightField">Wall height (m) <input id="calcHeight" type="number" step="0.01" min="0"
+                            placeholder="e.g., 2.4"></label>
+                    <label>Number of coats <input id="calcCoats" type="number" min="1" value="2"></label>
+                    <label id="doorsField">Doors <input id="calcDoors" type="number" min="0" value="1"></label>
+                    <label id="windowsField">Windows <input id="calcWindows" type="number" min="0" value="1"></label>
+                    <label>Coverage assumption
+                        <select id="calcCoverage">
+                            <option value="12" selected>12 m²/L (typical)</option>
+                            <option value="10">10 m²/L</option>
+                            <option value="14">14 m²/L</option>
+                        </select>
+                    </label>
+                    <label>VAT
+                        <select id="calcVAT">
+                            <option value="incl" selected>Show inc. VAT</option>
+                            <option value="ex">Show ex. VAT</option>
+                        </select>
+                    </label>
                 </div>
-                <div id="calcResult" class="result hidden"></div>
+
+                <div class="calc-actions">
+                    <button id="calcBtn" class="btn">Calculate litres</button>
+                    <button id="calcAddTins" class="btn btn-secondary">Add recommended tins to basket</button>
+                    <span id="calcResult" class="calc-result" aria-live="polite"></span>
+                </div>
+                <p class="calc-note">Tip: If you don’t know sizes yet, keep coverage at <strong>12 m²/L</strong> and
+                    we’ll propose tins that cover your estimate.</p>
+            </section>
+
+            <!-- Results grid -->
+            <section id="results" class="results" aria-live="polite"></section>
+        </section>
+
+        <!-- ====== SERVICES ====== -->
+        <section id="services" class="route" aria-labelledby="services-title">
+            <h2 id="services-title">Services</h2>
+            <div class="services-grid">
+                <article class="card">
+                    <h3>Interior Painting</h3>
+                    <p>Walls, ceilings, woodwork and lining paper. Dust-controlled sanding and meticulous prep.</p>
+                    <button class="linklike" data-open-system="interior-general">View System Sheet</button>
+                </article>
+                <article class="card">
+                    <h3>Exterior Painting</h3>
+                    <p>Windows, doors, soffits, fascia boards, gutters & downpipes. Weather-tough systems.</p>
+                    <button class="linklike" data-open-system="exterior-general">View System Sheet</button>
+                </article>
+                <article class="card">
+                    <h3>Taping & Repairs</h3>
+                    <p>Toupret & Gyproc fillers, taping and jointing, beads and finishing for a flawless base.</p>
+                    <button class="linklike" data-open-system="taping-general">View System Sheet</button>
+                </article>
             </div>
         </section>
 
-        <!-- About -->
-        <section id="about" class="container">
-            <h3>About Us</h3>
-            <p>
-                <strong>Fife Painting Co.</strong> is a family–run business built on craftsmanship, reliability, and
-                friendly service. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vulputate, turpis
-                vitae tincidunt dapibus, enim arcu facilisis massa, ut laoreet erat magna sed lorem. Phasellus
-                dignissim, lacus sit amet rhoncus interdum, lectus risus tempor neque, in pharetra ligula tellus a
-                sapien.
-            </p>
-            <p class="hint">Click &amp; Collect currently at <strong>Markinch Train Station</strong>. Delivery available
-                UK–wide.</p>
+        <!-- ====== CONTACT ====== -->
+        <section id="contact" class="route" aria-labelledby="contact-title">
+            <h2 id="contact-title">Contact</h2>
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Form wired to EmailJS later.');">
+                <div class="grid">
+                    <label>Name <input type="text" required></label>
+                    <label>Email <input type="email" required></label>
+                    <label>Phone <input type="tel"></label>
+                    <label>Address (optional) <input type="text"></label>
+                    <label class="full">Message <textarea rows="4" required></textarea></label>
+                </div>
+                <div class="muted">A copy will be CC’d to you automatically.</div>
+                <button class="btn">Send</button>
+            </form>
         </section>
 
-        <!-- Basket -->
-        <section id="basket" class="container">
-            <h3>Basket</h3>
-            <div class="basket">
-                <div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Item</th>
-                                <th>Tin</th>
-                                <th>Finish</th>
-                                <th>Price (ex VAT)</th>
-                                <th>Qty</th>
-                                <th>Total</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="basketBody"></tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="5" class="muted">Subtotal (ex VAT)</td>
-                                <td id="subtotalCell">£0.00</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td colspan="5" class="muted">VAT (20%)</td>
-                                <td id="vatCell">£0.00</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td colspan="5">Grand Total (inc VAT)</td>
-                                <td id="grandCell">£0.00</td>
-                                <td></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <div class="row" style="margin-top:8px">
-                        <button id="clearBasketBtn" class="btn secondary" type="button">Clear basket</button>
-                    </div>
-                </div>
-                <div>
-                    <div class="checkout">
-                        <div class="row space" style="margin-bottom:8px"><strong>Checkout</strong><span class="flag"
-                                id="itemsFlag">0 items</span></div>
-                        <div class="row"><button id="placeOrderBtn" class="btn" type="button">Place Order</button></div>
-                        <div id="checkoutForm" class="hidden" style="margin-top:12px">
-                            <div class="row stretch" style="gap:12px;flex-wrap:wrap">
-                                <div style="flex:1 1 240px"><label>Name</label><input id="cName" class="input"
-                                        placeholder="Your name" /></div>
-                                <div style="flex:1 1 240px"><label>Email</label><input id="cEmail" class="input"
-                                        placeholder="you@example.com" /></div>
-                                <div style="flex:1 1 200px"><label>Phone</label><input id="cPhone" class="input"
-                                        placeholder="07..." /></div>
-                                <div style="flex:1 1 220px"><label>Preferred Option</label>
-                                    <select id="cOption" class="input">
-                                        <option>Click & Collect</option>
-                                        <option>Delivery</option>
-                                    </select>
-                                </div>
-                                <div id="collectWrap" style="flex:1 1 260px"><label>Preferred collection
-                                        date/time</label>
-                                    <input id="cWhen" class="input" type="datetime-local" />
-                                    <p class="hint" style="margin:6px 0 0">Pickup location: <strong>Markinch Train
-                                            Station</strong></p>
-                                </div>
-                                <div id="deliveryWrap" class="hidden" style="flex:1 1 100%">
-                                    <label>Delivery address</label>
-                                    <textarea id="cAddress" class="input" rows="3"
-                                        placeholder="House no., street, town, postcode"></textarea>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-top:12px"><button id="submitOrderBtn" class="btn"
-                                    type="button">Submit Order</button></div>
-                            <p class="hint" style="margin-top:8px">This demo uses your email client via
-                                <code>mailto:</code> to send the order with subject <strong>"Website Order"</strong> to
-                                the business and CC you.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
-    <script>
-        ; (() => {
-            // ---------- Demo Data ----------
-            const VAT_RATE = 0.20;
-            const PRICES = { // ex VAT demo prices
-                "1L": 18.00,
-                "2.5L": 35.00,
-                "5L": 60.00,
-                "10L": 110.00
-            };
+    <!-- ====== SYSTEM SHEET MODAL ====== -->
+    <dialog id="systemModal" class="modal">
+        <form method="dialog" class="modal-inner">
+            <button class="modal-close" aria-label="Close">×</button>
+            <div id="systemContent"></div>
+        </form>
+    </dialog>
 
-            const COLOURS = (function () {
-                // Build 12 base colours, each with 4 shades (base + 3)
-                const bases = [
-                    { name: "Ocean Blue", hex: "#2B6CB0" },
-                    { name: "Fife Mist", hex: "#94A3B8" },
-                    { name: "Slate Harbour", hex: "#334155" },
-                    { name: "Gorse Yellow", hex: "#FBBF24" },
-                    { name: "Pittenweem Pink", hex: "#EC4899" },
-                    { name: "Lomond Green", hex: "#047857" },
-                    { name: "Lundin Lilac", hex: "#8B5CF6" },
-                    { name: "Burntisland Brick", hex: "#B45309" },
-                    { name: "St Andrews Sky", hex: "#60A5FA" },
-                    { name: "Cupar Clay", hex: "#7C3AED" },
-                    { name: "Elie Sand", hex: "#F59E0B" },
-                    { name: "Anstruther Ash", hex: "#6B7280" }
-                ];
-                function shades(hex) {
-                    // Return base + 3 programmatic lighter/darker shades
-                    function clamp(n) { return Math.max(0, Math.min(255, n)); }
-                    const c = hex.replace('#', '');
-                    const r = parseInt(c.slice(0, 2), 16), g = parseInt(c.slice(2, 4), 16), b = parseInt(c.slice(4, 6), 16);
-                    const variants = [0, 0.18, -0.15, 0.30]; // base, lighter, darker, lightest
-                    return variants.map((v, i) => {
-                        const rr = clamp(Math.round(r * (1 + v))), gg = clamp(Math.round(g * (1 + v))), bb = clamp(Math.round(b * (1 + v)));
-                        const hx = `#${rr.toString(16).padStart(2, '0')}${gg.toString(16).padStart(2, '0')}${bb.toString(16).padStart(2, '0')}`.toUpperCase();
-                        return { hex: hx, label: i === 0 ? "Base" : "Shade " + i };
-                    });
-                }
-                return bases.map(b => ({
-                    name: b.name,
-                    shades: shades(b.hex), // [{hex,label} * 4]
-                    finishes: ["Matt", "Eggshell", "Satin"],
-                }));
-            })();
+    <!-- ====== CART / BASKET MODAL ====== -->
+    <dialog id="cartModal" class="modal">
+        <form method="dialog" class="modal-inner">
+            <button class="modal-close" aria-label="Close">×</button>
+            <div class="system">
+                <h3>Your Basket</h3>
+                <div id="cartItems" class="cart-items"></div>
 
-            // ---------- State ----------
-            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                <h4>Fulfilment</h4>
+                <div class="cart-fulfil">
+                    <label><input type="radio" name="fulfil" value="delivery" checked> Delivery</label>
+                    <label><input type="radio" name="fulfil" value="collect"> Click & Collect</label>
+                    <label>Preferred day <input id="slotDay" type="date"></label>
+                    <label>Time slot
+                        <select id="slotTime"></select>
+                    </label>
+                </div>
 
-            // ---------- Helpers ----------
-            const fmtGBP = n => `£${n.toFixed(2)}`;
-            const exVatToInc = n => n * (1 + VAT_RATE);
-            const encode = s => encodeURIComponent(s);
+                <div class="cart-summary">
+                    <div><strong>Subtotal:</strong> <span id="cartSubtotal">£0.00</span></div>
+                    <div><strong>VAT (20%):</strong> <span id="cartVAT">£0.00</span></div>
+                    <div><strong>Total:</strong> <span id="cartTotal">£0.00</span></div>
+                </div>
 
-            function saveCart() { localStorage.setItem('cart', JSON.stringify(cart)); updateCartBadge(); renderBasket(); }
-            function updateCartBadge() {
-                const count = cart.reduce((a, i) => a + i.qty, 0);
-                document.getElementById('cartBadge').textContent = count;
-                document.getElementById('itemsFlag').textContent = `${count} item${count !== 1 ? 's' : ''}`;
-            }
-
-            function addToCart(item) {
-                // Merge if same colour+size+finish
-                const idx = cart.findIndex(x => x.colour === item.colour && x.size === item.size && x.finish === item.finish);
-                if (idx > -1) { cart[idx].qty += item.qty; }
-                else { cart.push(item); }
-                saveCart();
-            }
-
-            function removeFromCart(index) { cart.splice(index, 1); saveCart(); }
-            function clearBasket() { cart = []; saveCart(); }
-
-            // ---------- Catalogue UI ----------
-            const grid = document.getElementById('catalogueGrid');
-            const searchInput = document.getElementById('searchInput');
-            const finishFilter = document.getElementById('finishFilter');
-
-            function matchesQuery(colour, q) {
-                if (!q) return true;
-                q = q.toLowerCase();
-                if (colour.name.toLowerCase().includes(q)) return true;
-                return colour.shades.some(s => s.hex.toLowerCase().includes(q));
-            }
-
-            function renderCatalogue() {
-                const q = searchInput.value.trim();
-                const f = finishFilter.value;
-                grid.innerHTML = '';
-
-                COLOURS.filter(c => matchesQuery(c, q)).forEach(c => {
-                    const sw = c.shades[0].hex; // show base swatch
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    card.innerHTML = `
-          <div class="swatch" style="background:${sw}"></div>
-          <div class="pad">
-            <div class="row space">
-              <strong>${c.name}</strong>
-              <span class="pill">Available in 4 shades</span>
+                <div class="cart-actions">
+                    <button id="submitOrder" class="btn">Submit Order</button>
+                </div>
+                <p class="muted">On submission we’ll email you a confirmation and send a copy to the business.</p>
             </div>
-            <div class="hint" style="margin:6px 0 10px">Base: <code>${sw}</code></div>
-            <div class="row" style="gap:8px">
-              <select class="sizeSel">
-                <option>1L</option>
-                <option>2.5L</option>
-                <option>5L</option>
-                <option>10L</option>
-              </select>
-              <select class="finishSel">
-                ${c.finishes.map(ff => `<option ${f === ff ? 'selected' : ''}>${ff}</option>`).join('')}
-              </select>
-              <input type="number" min="1" value="1" class="qtyInp" style="width:80px"/>
-              <button class="btn addBtn" type="button">Add</button>
-              <button class="btn secondary copy" type="button">Copy & Add Hex</button>
-            </div>
-            <div class="hint" style="margin-top:8px">Price ex VAT: <span class="price">${fmtGBP(PRICES['1L'])}</span> (1L)</div>
-          </div>`;
+        </form>
+    </dialog>
 
-                    card.querySelector('.addBtn').addEventListener('click', () => {
-                        const size = card.querySelector('.sizeSel').value;
-                        const finish = card.querySelector('.finishSel').value;
-                        const qty = Math.max(1, parseInt(card.querySelector('.qtyInp').value || '1', 10));
-                        if (f && f !== '' && finishFilter.value && finish !== finishFilter.value) {
-                            // If user filtered by finish and changed selection, allow anyway
-                        }
-                        addToCart({
-                            colour: `${c.name} (${c.shades[0].hex})`,
-                            size,
-                            finish,
-                            unitPriceEx: PRICES[size],
-                            qty
-                        });
-                    });
+    <footer class="site-footer">
+        <p>© <span id="year"></span> PainterPro. All rights reserved.</p>
+    </footer>
 
-                    card.querySelector('.copy').addEventListener('click', () => {
-                        const hex = c.shades[0].hex;
-                        navigator.clipboard?.writeText(hex);
-                        const size = card.querySelector('.sizeSel').value;
-                        const finish = card.querySelector('.finishSel').value;
-                        addToCart({ colour: `${c.name} (${hex})`, size, finish, unitPriceEx: PRICES[size], qty: 1 });
-                    });
-
-                    grid.appendChild(card);
-                });
-            }
-
-            searchInput.addEventListener('input', renderCatalogue);
-            finishFilter.addEventListener('change', renderCatalogue);
-
-            // Populate calculator colour select with all base colour names
-            const calcColourSel = document.getElementById('calcColour');
-            COLOURS.forEach((c, i) => {
-                const opt = document.createElement('option');
-                opt.value = `${c.name} (${c.shades[0].hex})`;
-                opt.textContent = c.name;
-                calcColourSel.appendChild(opt);
-            });
-
-            // ---------- Calculator ----------
-            const calcBtn = document.getElementById('calcBtn');
-            const sendToCartBtn = document.getElementById('sendToCartBtn');
-            const calcResult = document.getElementById('calcResult');
-
-            let lastCalc = null; // store suggestion for Send to cart
-
-            function computeTins(requiredLitres) {
-                // Greedy cost-minimising by using largest tins first
-                const sizes = ["10L", "5L", "2.5L", "1L"];
-                let remaining = requiredLitres;
-                const pick = [];
-                for (const s of sizes) {
-                    const L = parseFloat(s);
-                    if (remaining <= 0) break;
-                    let n = Math.floor(remaining / L);
-                    if (n > 0) { pick.push({ size: s, qty: n }); remaining -= n * L; }
-                }
-                if (remaining > 0) { // add one smallest tin that covers remainder
-                    for (let i = sizes.length - 1; i >= 0; i--) {
-                        const s = sizes[i];
-                        pick.push({ size: s, qty: 1 });
-                        remaining = 0; break;
-                    }
-                }
-                return pick;
-            }
-
-            function calculate() {
-                const width = parseFloat(document.getElementById('width').value) || 0;
-                const length = parseFloat(document.getElementById('length').value) || 0;
-                const height = parseFloat(document.getElementById('height').value) || 0;
-                const coats = Math.max(1, parseInt(document.getElementById('coats').value || '1', 10));
-                const includeCeiling = document.getElementById('includeCeiling').checked;
-                const doors = Math.max(0, parseInt(document.getElementById('doors').value || '0', 10));
-                const windows = Math.max(0, parseInt(document.getElementById('windows').value || '0', 10));
-                const doorArea = parseFloat(document.getElementById('doorArea').value) || 0;
-                const windowArea = parseFloat(document.getElementById('windowArea').value) || 0;
-                const coverage = Math.max(1, parseFloat(document.getElementById('coverage').value) || 12);
-                const colour = document.getElementById('calcColour').value;
-                const finish = document.getElementById('calcFinish').value;
-
-                // Walls area = perimeter * height
-                const perimeter = 2 * (width + length);
-                let area = perimeter * height;
-                if (includeCeiling) { area += width * length; }
-                area -= doors * doorArea + windows * windowArea;
-                area = Math.max(0, area);
-
-                const totalArea = area * coats;
-                const requiredLitres = totalArea / coverage;
-
-                const selection = computeTins(requiredLitres);
-                const costEx = selection.reduce((sum, it) => sum + PRICES[it.size] * it.qty, 0);
-                const costInc = exVatToInc(costEx);
-
-                lastCalc = { colour, finish, selection, costEx, costInc, requiredLitres, totalArea, coats, coverage };
-
-                calcResult.classList.remove('hidden');
-                calcResult.innerHTML = `
-        <div><strong>Total area:</strong> ${totalArea.toFixed(2)} m² (${coats} coat${coats > 1 ? 's' : ''}, ${coverage} m²/L)</div>
-        <div><strong>Required paint:</strong> ${requiredLitres.toFixed(2)} L</div>
-        <div style="margin-top:6px"><strong>Suggested tins:</strong></div>
-        <ul style="margin:6px 0 0 18px">${selection.map(s => `<li>${s.size} × ${s.qty} — ${fmtGBP(PRICES[s.size])} each</li>`).join('')}</ul>
-        <div style="margin-top:8px"><strong>Cost:</strong> ${fmtGBP(costEx)} ex VAT · ${fmtGBP(costInc)} inc VAT</div>
-        <div class="ok" style="margin-top:6px">Ready to add to basket for <em>${colour}</em> in <em>${finish}</em>.</div>
-      `;
-                sendToCartBtn.disabled = selection.length === 0;
-            }
-
-            calcBtn.addEventListener('click', calculate);
-
-            sendToCartBtn.addEventListener('click', () => {
-                if (!lastCalc) return;
-                lastCalc.selection.forEach(s => {
-                    addToCart({ colour: lastCalc.colour, size: s.size, finish: lastCalc.finish, unitPriceEx: PRICES[s.size], qty: s.qty });
-                });
-                // Scroll to basket
-                location.hash = '#basket';
-            });
-
-            // ---------- Basket UI ----------
-            const basketBody = document.getElementById('basketBody');
-            const subtotalCell = document.getElementById('subtotalCell');
-            const vatCell = document.getElementById('vatCell');
-            const grandCell = document.getElementById('grandCell');
-
-            function renderBasket() {
-                basketBody.innerHTML = '';
-                let subtotal = 0;
-                cart.forEach((item, index) => {
-                    const line = item.unitPriceEx * item.qty;
-                    subtotal += line;
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
-          <td>${item.colour}</td>
-          <td>${item.size}</td>
-          <td>${item.finish}</td>
-          <td>${fmtGBP(item.unitPriceEx)}</td>
-          <td>
-            <div class="qty">
-              <button data-idx="${index}" class="dec">−</button>
-              <input type="number" min="1" value="${item.qty}" class="input qty-field" style="width:70px"/>
-              <button data-idx="${index}" class="inc">+</button>
-            </div>
-          </td>
-          <td>${fmtGBP(line)}</td>
-          <td><span data-idx="${index}" class="remove">Remove</span></td>
-        `;
-                    tr.querySelector('.dec').addEventListener('click', e => { const i = parseInt(e.currentTarget.getAttribute('data-idx'), 10); cart[i].qty = Math.max(1, cart[i].qty - 1); saveCart(); });
-                    tr.querySelector('.inc').addEventListener('click', e => { const i = parseInt(e.currentTarget.getAttribute('data-idx'), 10); cart[i].qty += 1; saveCart(); });
-                    tr.querySelector('.remove').addEventListener('click', e => { const i = parseInt(e.currentTarget.getAttribute('data-idx'), 10); removeFromCart(i); });
-                    tr.querySelector('.qty-field').addEventListener('change', e => { const v = Math.max(1, parseInt(e.target.value || '1', 10)); const i = index; cart[i].qty = v; saveCart(); });
-                    basketBody.appendChild(tr);
-                });
-                subtotalCell.textContent = fmtGBP(subtotal);
-                vatCell.textContent = fmtGBP(subtotal * VAT_RATE);
-                grandCell.textContent = fmtGBP(exVatToInc(subtotal));
-                updateCartBadge();
-            }
-
-            document.getElementById('clearBasketBtn').addEventListener('click', clearBasket);
-
-            // ---------- Checkout / Email ----------
-            const placeOrderBtn = document.getElementById('placeOrderBtn');
-            const checkoutForm = document.getElementById('checkoutForm');
-            const cOption = document.getElementById('cOption');
-            const collectWrap = document.getElementById('collectWrap');
-            const deliveryWrap = document.getElementById('deliveryWrap');
-
-            placeOrderBtn.addEventListener('click', () => {
-                checkoutForm.classList.toggle('hidden');
-            });
-
-            cOption.addEventListener('change', () => {
-                const isCC = cOption.value === 'Click & Collect';
-                collectWrap.classList.toggle('hidden', !isCC);
-                deliveryWrap.classList.toggle('hidden', isCC);
-            });
-
-            function composeEmail() {
-                const name = document.getElementById('cName').value.trim();
-                const email = document.getElementById('cEmail').value.trim();
-                const phone = document.getElementById('cPhone').value.trim();
-                const option = cOption.value;
-                const when = document.getElementById('cWhen').value;
-                const address = document.getElementById('cAddress').value.trim();
-
-                if (!cart.length) { alert('Your basket is empty.'); return; }
-                if (!name || !email) { alert('Please enter your name and email.'); return; }
-
-                // Build order lines
-                let lines = cart.map(i => `- ${i.colour} | ${i.size} | ${i.finish} | ${i.qty} × ${fmtGBP(i.unitPriceEx)} (ex VAT)`).join('\n');
-                const subtotal = cart.reduce((s, i) => s + i.unitPriceEx * i.qty, 0);
-                const vat = subtotal * VAT_RATE;
-                const grand = exVatToInc(subtotal);
-
-                const details = option === 'Click & Collect'
-                    ? `Pickup at Markinch Train Station\nPreferred date/time: ${when || 'N/A'}`
-                    : `Delivery address:\n${address || 'N/A'}`;
-
-                const body = `Hello Fife Painting Co.,%0D%0A%0D%0A` +
-                    `Please find my order below.%0D%0A%0D%0A` +
-                    `Customer:%0D%0A- Name: ${encodeURIComponent(name)}%0D%0A- Email: ${encode(email)}%0D%0A- Phone: ${encodeURIComponent(phone)}%0D%0A- Option: ${encodeURIComponent(option)}%0D%0A%0D%0A` +
-                    `${encodeURIComponent(details)}%0D%0A%0D%0A` +
-                    `Items:%0D%0A${encodeURIComponent(lines)}%0D%0A%0D%0A` +
-                    `Totals:%0D%0A- Subtotal (ex VAT): ${encodeURIComponent(fmtGBP(subtotal))}%0D%0A- VAT (20%): ${encodeURIComponent(fmtGBP(vat))}%0D%0A- Grand Total (inc VAT): ${encodeURIComponent(fmtGBP(grand))}%0D%0A%0D%0A` +
-                    `Subject reference: Website Order`;
-
-                const mailto = `mailto:Daviebirrell28@gmail.com?subject=${encode('Website Order')}&cc=${encode(email)}&body=${body}`;
-                window.location.href = mailto;
-            }
-
-            document.getElementById('submitOrderBtn').addEventListener('click', composeEmail);
-
-            // ---------- Init ----------
-            renderCatalogue();
-            renderBasket();
-            updateCartBadge();
-        })();
-    </script>
+    <!-- DEFER makes first-load interactions reliable -->
+    <script src="/js/script.js" defer></script>
 </body>
 
 </html>
