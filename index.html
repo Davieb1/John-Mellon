@@ -12,15 +12,16 @@
     <!-- ====== GLOBAL NAV ====== -->
     <header class="site-header">
         <nav class="nav">
-            <a class="brand" href="#" data-route="home">PainterPro</a>
+            <!-- Brand just jumps to top/hero -->
+            <a class="brand" href="#home">PainterPro</a>
 
             <button class="nav-toggle" aria-expanded="false" aria-controls="navlinks">☰</button>
 
             <ul id="navlinks" class="links">
-                <li><a href="#" data-route="home">Home</a></li>
-                <li><a href="#" data-route="catalogue">Paint Catalogue</a></li>
-                <li><a href="#" data-route="services">Services</a></li>
-                <li><a href="#" data-route="contact">Contact</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#catalogue">Paint Catalogue</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
 
             <!-- Basket -->
@@ -30,11 +31,11 @@
         </nav>
     </header>
 
-    <!-- ====== ROUTES ====== -->
+    <!-- ====== PAGE CONTENT ====== -->
     <main id="app">
 
-        <!-- ====== HOME ====== -->
-        <section id="home" class="route route-active" aria-labelledby="home-title" data-route-panel="home">
+        <!-- ====== HOME / HERO ====== -->
+        <section id="home" aria-labelledby="home-title">
             <h1 id="home-title" class="sr-only">Home</h1>
 
             <!-- HERO -->
@@ -50,8 +51,8 @@
                     <p class="hero-trust muted">⭐ Trusted locally • Premium finishes • Fast, friendly quotes</p>
 
                     <div class="hero-ctas">
-                        <a href="#" class="btn" data-route="catalogue">Shop Paints &amp; Supplies</a>
-                        <a href="#" class="btn btn-secondary" data-route="contact">Request Your Free Quote</a>
+                        <a href="#catalogue" class="btn">Shop Paints &amp; Supplies</a>
+                        <a href="#contact" class="btn btn-secondary">Request Your Free Quote</a>
                     </div>
                 </div>
             </div>
@@ -66,13 +67,13 @@
                 <article class="card">
                     <h3>Calculator &amp; Basket</h3>
                     <p>Estimate litres, then add recommended tins to your basket in one click.</p>
-                    <a href="#" class="text-link" data-route="catalogue">Open catalogue &amp; calculator →</a>
+                    <a href="#catalogue" class="text-link">Open catalogue &amp; calculator →</a>
                 </article>
 
                 <article class="card">
                     <h3>Dulux Heritage</h3>
                     <p>Explore Pale, Mid, Deep Tones and Whites with larger swatches.</p>
-                    <a href="#" class="text-link" data-route="catalogue" data-go-tab="heritage">Jump to Heritage →</a>
+                    <a href="#catalogue" class="text-link">Jump to Heritage →</a>
                 </article>
             </section>
 
@@ -85,50 +86,32 @@
                     <div class="qs">
                         <div class="qs-actions">
                             <div class="qs-item">
-                                <a href="#"
-                                   class="btn"
-                                   data-route="catalogue"
-                                   data-go-tab="ceiling">Ceilings</a>
+                                <a href="#catalogue" class="btn">Ceilings</a>
                                 <small class="hint muted">Low-flash finishes for perfect coverage</small>
                             </div>
 
                             <div class="qs-item">
-                                <a href="#"
-                                   class="btn"
-                                   data-route="catalogue"
-                                   data-go-tab="walls">Walls</a>
+                                <a href="#catalogue" class="btn">Walls</a>
                                 <small class="hint muted">Durable, washable emulsions for busy rooms</small>
                             </div>
 
                             <div class="qs-item">
-                                <a href="#"
-                                   class="btn"
-                                   data-route="catalogue"
-                                   data-go-tab="woodwork">Woodwork</a>
+                                <a href="#catalogue" class="btn">Woodwork</a>
                                 <small class="hint muted">Smooth satin/gloss for trims &amp; doors</small>
                             </div>
 
                             <div class="qs-item">
-                                <a href="#"
-                                   class="btn"
-                                   data-route="catalogue"
-                                   data-go-tab="interior">Interior</a>
+                                <a href="#catalogue" class="btn">Interior</a>
                                 <small class="hint muted">Complete interior systems &amp; primers</small>
                             </div>
 
                             <div class="qs-item">
-                                <a href="#"
-                                   class="btn"
-                                   data-route="catalogue"
-                                   data-go-tab="exterior">Exterior</a>
+                                <a href="#catalogue" class="btn">Exterior</a>
                                 <small class="hint muted">Weather-tough solutions for outdoors</small>
                             </div>
 
                             <div class="qs-item">
-                                <a href="#"
-                                   class="btn"
-                                   data-route="catalogue"
-                                   data-go-tab="heritage">Dulux Heritage</a>
+                                <a href="#catalogue" class="btn">Dulux Heritage</a>
                                 <small class="hint muted">Luxury tone library with designer colours</small>
                             </div>
                         </div>
@@ -136,7 +119,7 @@
                 </div>
             </section>
 
-            <!-- Coverage -->
+            <!-- Coverage strip -->
             <section class="strip">
                 <div class="strip-inner">
                     <h3>Areas We Cover</h3>
@@ -149,9 +132,7 @@
         <section class="strip promo-quote">
             <div class="strip-inner" style="text-align:center">
                 <h3>Ready to transform your space?</h3>
-                <a href="#"
-                   class="btn"
-                   data-route="contact">Get Your Free Quote</a>
+                <a href="#contact" class="btn">Get Your Free Quote</a>
             </div>
         </section>
 
@@ -169,7 +150,7 @@
         </section>
 
         <!-- ====== CATALOGUE ====== -->
-        <section id="catalogue" class="route" aria-labelledby="catalogue-title" data-route-panel="catalogue">
+        <section id="catalogue" aria-labelledby="catalogue-title">
             <h2 id="catalogue-title">Paint Catalogue</h2>
 
             <!-- Sticky tabs -->
@@ -263,15 +244,12 @@
                 </div>
 
                 <div class="calc-actions">
-                    <button id="calcBtn" class="btn">Calculate litres</button>
-                    <button id="calcAddTins" class="btn btn-secondary">Add recommended tins to basket</button>
+                    <button id="calcBtn" class="btn" type="button">Calculate litres</button>
+                    <button id="calcAddTins" class="btn btn-secondary" type="button">Add recommended tins to basket</button>
 
                     <span id="calcResult" class="calc-result" aria-live="polite"></span>
 
-                    <a href="#"
-                       class="linklike"
-                       id="calcHelp"
-                       data-route="contact">Need help choosing a finish?</a>
+                    <a href="#contact" class="linklike" id="calcHelp">Need help choosing a finish?</a>
                 </div>
 
                 <p class="calc-note">
@@ -284,32 +262,32 @@
         </section>
 
         <!-- ====== SERVICES ====== -->
-        <section id="services" class="route" aria-labelledby="services-title" data-route-panel="services">
+        <section id="services" aria-labelledby="services-title">
             <h2 id="services-title">Services</h2>
 
             <div class="services-grid">
                 <article class="card">
                     <h3>Interior Painting</h3>
                     <p>Walls, ceilings, woodwork and lining paper. Dust-controlled sanding and meticulous prep.</p>
-                    <button class="linklike" data-open-system="interior-general">View System Sheet</button>
+                    <button class="linklike" data-open-system="interior-general" type="button">View System Sheet</button>
                 </article>
 
                 <article class="card">
                     <h3>Exterior Painting</h3>
                     <p>Windows, doors, soffits, fascia boards, gutters &amp; downpipes. Weather-tough systems.</p>
-                    <button class="linklike" data-open-system="exterior-general">View System Sheet</button>
+                    <button class="linklike" data-open-system="exterior-general" type="button">View System Sheet</button>
                 </article>
 
                 <article class="card">
                     <h3>Taping &amp; Repairs</h3>
                     <p>Toupret &amp; Gyproc fillers, taping and jointing, beads and finishing for a flawless base.</p>
-                    <button class="linklike" data-open-system="taping-general">View System Sheet</button>
+                    <button class="linklike" data-open-system="taping-general" type="button">View System Sheet</button>
                 </article>
             </div>
         </section>
 
         <!-- ====== CONTACT ====== -->
-        <section id="contact" class="route" aria-labelledby="contact-title" data-route-panel="contact">
+        <section id="contact" aria-labelledby="contact-title">
             <h2 id="contact-title">Contact</h2>
 
             <form class="contact-form" onsubmit="event.preventDefault(); alert('Form wired to EmailJS later.');">
@@ -351,7 +329,7 @@
     <!-- ====== SYSTEM MODAL ====== -->
     <dialog id="systemModal" class="modal">
         <form method="dialog" class="modal-inner">
-            <button class="modal-close" aria-label="Close">×</button>
+            <button class="modal-close" aria-label="Close" type="submit">×</button>
             <div id="systemContent"></div>
         </form>
     </dialog>
@@ -359,7 +337,7 @@
     <!-- ====== CART MODAL ====== -->
     <dialog id="cartModal" class="modal">
         <form method="dialog" class="modal-inner">
-            <button class="modal-close" aria-label="Close">×</button>
+            <button class="modal-close" aria-label="Close" type="submit">×</button>
 
             <div class="system">
                 <h3>Your Basket</h3>
@@ -383,7 +361,7 @@
                 </div>
 
                 <div class="cart-actions">
-                    <button id="submitOrder" class="btn">Submit Order</button>
+                    <button id="submitOrder" class="btn" type="button">Submit Order</button>
                 </div>
 
                 <p class="muted">On submission we’ll email you a confirmation and send a copy to the business.</p>
@@ -398,13 +376,54 @@
     <!-- Toast notification -->
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-    <!-- Main JS -->
+    <!-- Main JS (optional, but fixed path so it actually loads on GitHub Pages) -->
     <script src="./js/script.js" defer></script>
     <script>
-        // footer year
+        // Set the footer year
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Basic open/close for the modals so they still work without a framework
+        const cartBtn = document.getElementById('openCart');
+        const cartModal = document.getElementById('cartModal');
+        const systemModal = document.getElementById('systemModal');
+
+        if (cartBtn && cartModal) {
+            cartBtn.addEventListener('click', () => {
+                cartModal.showModal();
+            });
+        }
+
+        document.querySelectorAll('.modal-close').forEach(btn => {
+            btn.addEventListener('click', e => {
+                const dialog = btn.closest('dialog');
+                if (dialog && dialog.open) dialog.close();
+            });
+        });
+
+        // System sheet buttons
+        document.querySelectorAll('[data-open-system]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const sys = btn.getAttribute('data-open-system');
+                const box = document.getElementById('systemContent');
+                if (box) {
+                    box.innerHTML = `<h3 style="margin-top:0">${sys
+                        .replace(/-/g, ' ')
+                        .replace(/\b\w/g, m => m.toUpperCase())}</h3>
+                    <p>Full prep / primer / topcoat system details will go here.</p>`;
+                }
+                if (systemModal) systemModal.showModal();
+            });
+        });
+
+        // (Optional) calculator button stub so it doesn't error
+        const calcBtn = document.getElementById('calcBtn');
+        const calcResult = document.getElementById('calcResult');
+        if (calcBtn && calcResult) {
+            calcBtn.addEventListener('click', () => {
+                calcResult.textContent = "Calculator coming soon.";
+            });
+        }
     </script>
 
 </body>
-
 </html>

@@ -210,9 +210,6 @@ a:hover {
 /* ROUTES */
 .route {
   display: none;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 18px 16px;
 }
 .route-active {
   display: block;
