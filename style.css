@@ -21,7 +21,7 @@ body {
 }
 html {
   scroll-padding-top: 72px;
-} /* helps with sticky header */
+}
 img {
   max-width: 100%;
   display: block;
@@ -70,6 +70,14 @@ a:hover {
   margin: 0 0 0 auto;
   padding: 0;
 }
+.links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+.links a:hover {
+  text-decoration: underline;
+}
 .nav-toggle {
   display: none;
   background: transparent;
@@ -77,6 +85,7 @@ a:hover {
   color: #fff;
   border-radius: 8px;
   padding: 6px 10px;
+  cursor: pointer;
 }
 @media (max-width: 760px) {
   .nav-toggle {
@@ -195,7 +204,13 @@ a:hover {
 .text-link {
   display: inline-block;
   margin-top: 8px;
+  color: var(--accent);
+  text-decoration: none;
 }
+.text-link:hover {
+  text-decoration: underline;
+}
+
 .strip {
   border-top: 1px solid #1e2230;
   border-bottom: 1px solid #1e2230;
@@ -207,13 +222,7 @@ a:hover {
   padding: 18px 16px;
 }
 
-/* ROUTES */
-/* .route {
-  display: none;
-}
-.route-active {
-  display: block;
-} */
+/* NOTE: removed .route / .route-active hiding because we're not SPA routing */
 
 /* CATALOGUE */
 .tabs {
@@ -221,6 +230,7 @@ a:hover {
   top: 54px;
   z-index: 40;
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   background: #0c0d10;
   padding: 10px;
@@ -235,6 +245,7 @@ a:hover {
   padding: 8px 12px;
   border-radius: 999px;
   cursor: pointer;
+  font-size: 0.9rem;
 }
 .tab.is-active {
   background: var(--accent);
@@ -294,6 +305,7 @@ a:hover {
   flex-direction: column;
   gap: 6px;
   font-size: 0.95rem;
+  color: #fff;
 }
 .calculator input,
 .calculator select {
@@ -403,6 +415,7 @@ a:hover {
 .swatch-name {
   margin: 8px 0 6px;
   font-weight: 600;
+  color: #fff;
 }
 
 /* SERVICES & CONTACT */
@@ -410,6 +423,9 @@ a:hover {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
+  padding: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 @media (max-width: 900px) {
   .services-grid {
@@ -420,9 +436,15 @@ a:hover {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
 }
 .contact-form .grid .full {
   grid-column: 1/-1;
+}
+.contact-form label {
+  color: #fff;
 }
 .contact-form input,
 .contact-form textarea {
@@ -471,6 +493,7 @@ a:hover {
 }
 .system h3 {
   margin: 0 0 6px;
+  color: #fff;
 }
 .system .row {
   display: grid;
@@ -553,27 +576,11 @@ a:hover {
    Paint Quick Start (Home)
    =========================== */
 
-/* Headline + subtitle (optional) */
-#paint-quick-start .section-header h2 {
-  margin: 0 0 6px;
-}
-#paint-quick-start .section-header .subtitle {
-  color: var(--muted);
-}
-
-/* Layout A: image + actions using .qs /.qs-img /.qs-actions */
 #paint-quick-start .qs {
   display: flex;
   gap: 18px;
   align-items: flex-start;
   flex-wrap: wrap;
-}
-#paint-quick-start .qs-img {
-  width: min(360px, 100%);
-  border: 1px solid #24293a;
-  border-radius: 12px;
-  background: #0c0d12;
-  overflow: hidden;
 }
 #paint-quick-start .qs-actions {
   flex: 1 1 520px;
@@ -600,31 +607,10 @@ a:hover {
   }
 }
 
-/* Layout B: simple button row fallback (.button-row + .CLASS_BTN) */
-#paint-quick-start .button-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px;
-  margin-top: 12px;
-}
-.CLASS_BTN {
-  display: inline-block;
-  background: var(--accent);
-  color: #001827;
-  border: 0;
-  padding: 10px 14px;
-  border-radius: 10px;
-  font-weight: 700;
-  text-align: center;
-}
-.CLASS_BTN:hover {
-  filter: brightness(1.05);
-  text-decoration: none;
-}
-
 /* micro-trust */
 .hero-trust {
   margin: 6px 0 0;
+  color: #fff;
 }
 
 /* trust bullets */
@@ -634,10 +620,11 @@ a:hover {
 }
 .bullets li {
   margin: 6px 0;
+  color: #fff;
 }
 
 /* ===========================
-   Toast (single source of truth)
+   Toast
    =========================== */
 .toast {
   position: fixed;
@@ -660,4 +647,3 @@ a:hover {
   transform: translateY(0);
   pointer-events: auto;
 }
-

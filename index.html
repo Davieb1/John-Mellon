@@ -376,53 +376,11 @@
     <!-- Toast notification -->
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-    <!-- Main JS (optional, but fixed path so it actually loads on GitHub Pages) -->
+    <!-- JS bundle -->
     <script src="./js/script.js" defer></script>
     <script>
-        // Set the footer year
+        // just set the footer year early in case JS fails
         document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Basic open/close for the modals so they still work without a framework
-        const cartBtn = document.getElementById('openCart');
-        const cartModal = document.getElementById('cartModal');
-        const systemModal = document.getElementById('systemModal');
-
-        if (cartBtn && cartModal) {
-            cartBtn.addEventListener('click', () => {
-                cartModal.showModal();
-            });
-        }
-
-        document.querySelectorAll('.modal-close').forEach(btn => {
-            btn.addEventListener('click', e => {
-                const dialog = btn.closest('dialog');
-                if (dialog && dialog.open) dialog.close();
-            });
-        });
-
-        // System sheet buttons
-        document.querySelectorAll('[data-open-system]').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const sys = btn.getAttribute('data-open-system');
-                const box = document.getElementById('systemContent');
-                if (box) {
-                    box.innerHTML = `<h3 style="margin-top:0">${sys
-                        .replace(/-/g, ' ')
-                        .replace(/\b\w/g, m => m.toUpperCase())}</h3>
-                    <p>Full prep / primer / topcoat system details will go here.</p>`;
-                }
-                if (systemModal) systemModal.showModal();
-            });
-        });
-
-        // (Optional) calculator button stub so it doesn't error
-        const calcBtn = document.getElementById('calcBtn');
-        const calcResult = document.getElementById('calcResult');
-        if (calcBtn && calcResult) {
-            calcBtn.addEventListener('click', () => {
-                calcResult.textContent = "Calculator coming soon.";
-            });
-        }
     </script>
 
 </body>
