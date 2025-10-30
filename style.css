@@ -208,12 +208,12 @@ a:hover {
 }
 
 /* ROUTES */
-.route {
+/* .route {
   display: none;
 }
 .route-active {
   display: block;
-}
+} */
 
 /* CATALOGUE */
 .tabs {
@@ -660,3 +660,4 @@ a:hover {
   transform: translateY(0);
   pointer-events: auto;
 }
+
