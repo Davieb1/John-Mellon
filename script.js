@@ -7,6 +7,26 @@ const parseGBP = s => +String(s).replace(/[£,]/g, '') || 0;
 const j = o => JSON.stringify(o).replace(/"/g, '&quot;');
 const rid = () => Math.random().toString(36).slice(2) + Date.now().toString(36);
 
+// Simple toast notification (bottom-right) — keep a single definition
+function showToast(msg) {
+    const t = $('#toast');
+    if (!t) return;
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// Cart persistence
+function loadCart() {
+    try { CART = JSON.parse(localStorage.getItem('pp_cart') || '[]'); }
+    catch { CART = []; }
+}
+function saveCart() {
+    try { localStorage.setItem('pp_cart', JSON.stringify(CART)); }
+    catch { }
+}
+
 /* === NEW: tin pick + hex lookup helpers === */
 // choose a single tin size that best covers 'litres' (min overage)
 function pickSingleTin(litres, sizes = DATA.tinSizes) {
@@ -60,7 +80,6 @@ const DATA = {
                 { name: "DH Stone", hex: "#B9A792" }
             ]
         },
-
         "Mid Tones": {
             desc: "Balanced hues for relaxed living spaces. Great for walls with soft white woodwork.",
             colours: [
@@ -86,7 +105,6 @@ const DATA = {
                 { name: "Buff", hex: "#E2C79A" }
             ]
         },
-
         "Deep Tones": {
             desc: "Dramatic and cocooning shades for feature walls and statement rooms.",
             colours: [
@@ -112,7 +130,6 @@ const DATA = {
                 { name: "Red Sand", hex: "#A0523A" }
             ]
         },
-
         "Whites": {
             desc: "Crisp and clean whites from warm to cool for trim, ceilings and minimalist spaces.",
             colours: [
@@ -192,6 +209,10 @@ function init() {
     // Ensure we always start with a hash
     if (!location.hash) location.hash = '#home';
 
+    // Load saved cart if exists
+    loadCart();
+    updateCartCount();
+
     // Initial route render
     const route = (location.hash || '#home').replace('#', '');
     showRoute(route);
@@ -205,12 +226,13 @@ function init() {
         $('.nav-toggle').setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
-    // “Jump to Heritage” buttons on Home
+    // Jump to specific Catalogue tab from Home
     $$('[data-go-tab]').forEach(el => {
         el.addEventListener('click', e => {
             e.preventDefault();
+            const tab = el.dataset.goTab; // ceiling, walls, woodwork, interior, exterior, heritage
             location.hash = '#catalogue';
-            setTimeout(() => activateTab('heritage'), 0);
+            setTimeout(() => activateTab(tab), 100);
         });
     });
 
@@ -369,7 +391,6 @@ function renderHeritage() {
 function swatchHTML(c) {
     const name = (typeof c === 'string') ? c : c?.name || 'Unknown';
     const colour = (typeof c === 'string') ? '#666' : (c?.hex || '#666');
-    const slug = name.toLowerCase().replace(/\s+/g, '-');
     return `
     <div class="swatch" title="${name}">
       <div class="swatch-chip" style="background:${colour}; border:1px solid #1e2230"></div>
@@ -442,9 +463,9 @@ function openColourSheet(name, finishes) {
         </label>
         <label>Qty <input id="colourQty" type="number" min="1" value="1" style="width:90px"></label>
         <span id="sizeHint" class="spec">Suggested: ${suggestedSize} L for ~${Math.max(0, needL).toFixed(1)} L need</span>
-        <button class="btn" id="colourAdd" data-colour='${j({ name, finish: finishes[0] })}'>Add to basket</button>
-        <button class="linklike" id="colourUseCalc" data-colour='${j({ name, finish: finishes[0] })}'>Use calculator litres</button>
-        <button class="linklike" data-open-system="walls">System Sheet</button>
+        <button class="btn" id="colourAdd" type="button" data-colour='${j({ name, finish: finishes[0] })}'>Add to basket</button>
+        <button class="linklike" id="colourUseCalc" type="button" data-colour='${j({ name, finish: finishes[0] })}'>Use calculator litres</button>
+        <button class="linklike" data-open-system="walls" type="button">System Sheet</button>
       </div>
       <p class="spec">Available finishes: ${finishes.join(', ')}</p>
     </div>`;
@@ -478,15 +499,39 @@ document.addEventListener('click', e => {
         const meta = JSON.parse(e.target.dataset.colour);
         const L = +$('#colourTin').value;
         const qty = Math.max(1, +$('#colourQty').value || 1);
-        CART.push({ id: rid(), brand: "Dulux Heritage", name: meta.name, finish: meta.finish, colour: meta.name, tins: Array(qty).fill(L), qty: 1 });
-        updateCartCount(); openCart();
+        // PUSH to cart (missing before)
+        CART.push({
+            id: rid(),
+            brand: "Dulux Heritage",
+            name: meta.name,
+            finish: meta.finish,
+            colour: meta.name,
+            tins: Array(qty).fill(L),
+            qty: 1
+        });
+        saveCart();
+        updateCartCount();
+        showToast('Added to basket');
+        openCart();
     }
     if (e.target.id === 'colourUseCalc') {
         const meta = JSON.parse(e.target.dataset.colour);
         ensureCalc();
         const tins = recommendTins(lastCalc.litres);
-        CART.push({ id: rid(), brand: "Dulux Heritage", name: meta.name, finish: meta.finish, colour: meta.name, tins, qty: 1 });
-        updateCartCount(); openCart();
+        // Add the chosen colour using calculator litres
+        CART.push({
+            id: rid(),
+            brand: "Dulux Heritage",
+            name: meta.name,
+            finish: meta.finish,
+            colour: meta.name,
+            tins,
+            qty: 1
+        });
+        saveCart();
+        updateCartCount();
+        showToast('Recommended tins added');
+        openCart();
     }
 });
 
@@ -527,8 +572,12 @@ function ensureCalc() { if (!lastCalc.litres) { runCalc(); } }
 function addRecommendedTins() {
     ensureCalc();
     const tins = recommendTins(lastCalc.litres);
+    // PUSH to cart (was missing)
     CART.push({ id: rid(), brand: "Assorted", name: "Recommended tins", finish: "—", tins, qty: 1 });
-    updateCartCount(); openCart();
+    saveCart();
+    updateCartCount();
+    showToast('Recommended tins added');
+    openCart();
 }
 
 /* ===== system sheets (open from any card) ===== */
@@ -584,8 +633,12 @@ document.addEventListener('click', e => {
         const finish = finSel ? finSel.value : undefined;
         ensureCalc();
         const tins = recommendTins(meta.litres || lastCalc.litres);
+        // PUSH to cart (was missing)
         CART.push({ id: rid(), brand: meta.brand, name: meta.name, finish: finish || '—', tins, qty: 1 });
-        updateCartCount(); openCart();
+        saveCart();
+        updateCartCount();
+        showToast('Added to basket');
+        openCart();
     }
 });
 
@@ -604,14 +657,20 @@ cartItems.addEventListener('input', e => {
     const id = e.target.getAttribute('data-cart-qty');
     if (!id) return;
     const it = CART.find(x => x.id === id);
-    if (it) { it.qty = Math.max(1, +e.target.value || 1); renderCart(); }
+    if (it) {
+        it.qty = Math.max(1, +e.target.value || 1);
+        saveCart();
+        renderCart();
+    }
 });
 
 cartItems.addEventListener('click', e => {
     const id = e.target.getAttribute('data-cart-remove');
     if (!id) return;
     CART = CART.filter(x => x.id !== id);
-    updateCartCount(); renderCart();
+    saveCart();
+    updateCartCount();
+    renderCart();
 });
 
 $('#submitOrder').addEventListener('click', () => {
@@ -651,6 +710,7 @@ function renderCart() {
     cartSub.textContent = money(ex);
     cartVAT.textContent = money(vat);
     cartTotal.textContent = money(inc);
+    saveCart();
 }
 
 function itemTotal(i) {
