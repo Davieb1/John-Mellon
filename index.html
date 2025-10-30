@@ -12,13 +12,15 @@
     <!-- ====== GLOBAL NAV ====== -->
     <header class="site-header">
         <nav class="nav">
-            <a class="brand" href="#home">PainterPro</a>
+            <a class="brand" href="#" data-route="home">PainterPro</a>
+
             <button class="nav-toggle" aria-expanded="false" aria-controls="navlinks">☰</button>
+
             <ul id="navlinks" class="links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#catalogue">Paint Catalogue</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" data-route="home">Home</a></li>
+                <li><a href="#" data-route="catalogue">Paint Catalogue</a></li>
+                <li><a href="#" data-route="services">Services</a></li>
+                <li><a href="#" data-route="contact">Contact</a></li>
             </ul>
 
             <!-- Basket -->
@@ -32,20 +34,24 @@
     <main id="app">
 
         <!-- ====== HOME ====== -->
-        <section id="home" class="route route-active" aria-labelledby="home-title">
+        <section id="home" class="route route-active" aria-labelledby="home-title" data-route-panel="home">
             <h1 id="home-title" class="sr-only">Home</h1>
 
             <!-- HERO -->
             <div class="hero">
-                <img id="shopfront-hero" src="https://placehold.co/1600x600?text=Client+Shop+Front+Image"
-                    alt="Our shop front" />
+                <img
+                    id="shopfront-hero"
+                    src="https://placehold.co/1600x600?text=Client+Shop+Front+Image"
+                    alt="Our shop front"
+                />
                 <div class="hero-overlay">
                     <h2>Professional Decorating in Fife</h2>
                     <p>Interior • Exterior • Repairs • Colour Expertise</p>
                     <p class="hero-trust muted">⭐ Trusted locally • Premium finishes • Fast, friendly quotes</p>
+
                     <div class="hero-ctas">
-                        <a href="#catalogue" class="btn">Shop Paints & Supplies</a>
-                        <a href="#contact" class="btn btn-secondary">Request Your Free Quote</a>
+                        <a href="#" class="btn" data-route="catalogue">Shop Paints &amp; Supplies</a>
+                        <a href="#" class="btn btn-secondary" data-route="contact">Request Your Free Quote</a>
                     </div>
                 </div>
             </div>
@@ -56,15 +62,17 @@
                     <h3>Trusted Brands</h3>
                     <p>Dulux, Johnstone’s, Crown, Tikkurila, Toupret, Gyproc and more.</p>
                 </article>
+
                 <article class="card">
-                    <h3>Calculator & Basket</h3>
+                    <h3>Calculator &amp; Basket</h3>
                     <p>Estimate litres, then add recommended tins to your basket in one click.</p>
-                    <a href="#catalogue" class="text-link">Open catalogue & calculator →</a>
+                    <a href="#" class="text-link" data-route="catalogue">Open catalogue &amp; calculator →</a>
                 </article>
+
                 <article class="card">
                     <h3>Dulux Heritage</h3>
                     <p>Explore Pale, Mid, Deep Tones and Whites with larger swatches.</p>
-                    <a href="#catalogue" class="text-link" data-go-tab="heritage">Jump to Heritage →</a>
+                    <a href="#" class="text-link" data-route="catalogue" data-go-tab="heritage">Jump to Heritage →</a>
                 </article>
             </section>
 
@@ -77,27 +85,50 @@
                     <div class="qs">
                         <div class="qs-actions">
                             <div class="qs-item">
-                                <a href="#catalogue" data-go-tab="ceiling" class="btn">Ceilings</a>
+                                <a href="#"
+                                   class="btn"
+                                   data-route="catalogue"
+                                   data-go-tab="ceiling">Ceilings</a>
                                 <small class="hint muted">Low-flash finishes for perfect coverage</small>
                             </div>
+
                             <div class="qs-item">
-                                <a href="#catalogue" data-go-tab="walls" class="btn">Walls</a>
+                                <a href="#"
+                                   class="btn"
+                                   data-route="catalogue"
+                                   data-go-tab="walls">Walls</a>
                                 <small class="hint muted">Durable, washable emulsions for busy rooms</small>
                             </div>
+
                             <div class="qs-item">
-                                <a href="#catalogue" data-go-tab="woodwork" class="btn">Woodwork</a>
-                                <small class="hint muted">Smooth satin/gloss for trims & doors</small>
+                                <a href="#"
+                                   class="btn"
+                                   data-route="catalogue"
+                                   data-go-tab="woodwork">Woodwork</a>
+                                <small class="hint muted">Smooth satin/gloss for trims &amp; doors</small>
                             </div>
+
                             <div class="qs-item">
-                                <a href="#catalogue" data-go-tab="interior" class="btn">Interior</a>
-                                <small class="hint muted">Complete interior systems & primers</small>
+                                <a href="#"
+                                   class="btn"
+                                   data-route="catalogue"
+                                   data-go-tab="interior">Interior</a>
+                                <small class="hint muted">Complete interior systems &amp; primers</small>
                             </div>
+
                             <div class="qs-item">
-                                <a href="#catalogue" data-go-tab="exterior" class="btn">Exterior</a>
+                                <a href="#"
+                                   class="btn"
+                                   data-route="catalogue"
+                                   data-go-tab="exterior">Exterior</a>
                                 <small class="hint muted">Weather-tough solutions for outdoors</small>
                             </div>
+
                             <div class="qs-item">
-                                <a href="#catalogue" data-go-tab="heritage" class="btn">Dulux Heritage</a>
+                                <a href="#"
+                                   class="btn"
+                                   data-route="catalogue"
+                                   data-go-tab="heritage">Dulux Heritage</a>
                                 <small class="hint muted">Luxury tone library with designer colours</small>
                             </div>
                         </div>
@@ -105,6 +136,7 @@
                 </div>
             </section>
 
+            <!-- Coverage -->
             <section class="strip">
                 <div class="strip-inner">
                     <h3>Areas We Cover</h3>
@@ -113,16 +145,18 @@
             </section>
         </section>
 
-        <!-- Quote banner -->
-        <section class="strip">
+        <!-- ===== Quote banner ===== -->
+        <section class="strip promo-quote">
             <div class="strip-inner" style="text-align:center">
                 <h3>Ready to transform your space?</h3>
-                <a href="#contact" class="btn">Get Your Free Quote</a>
+                <a href="#"
+                   class="btn"
+                   data-route="contact">Get Your Free Quote</a>
             </div>
         </section>
 
-        <!-- Trust & proof -->
-        <section class="strip">
+        <!-- ===== Trust & proof ===== -->
+        <section class="strip trust-strip">
             <div class="strip-inner">
                 <h3>Why choose PainterPro?</h3>
                 <ul class="bullets">
@@ -135,7 +169,7 @@
         </section>
 
         <!-- ====== CATALOGUE ====== -->
-        <section id="catalogue" class="route" aria-labelledby="catalogue-title">
+        <section id="catalogue" class="route" aria-labelledby="catalogue-title" data-route-panel="catalogue">
             <h2 id="catalogue-title">Paint Catalogue</h2>
 
             <!-- Sticky tabs -->
@@ -158,6 +192,7 @@
                         Search all tabs
                     </label>
                 </div>
+
                 <div class="filters">
                     <select id="filterBrand">
                         <option value="">All brands</option>
@@ -177,24 +212,49 @@
             <section class="calculator">
                 <p class="calc-lead muted">Not sure how much paint you need? Try our free calculator.</p>
                 <h3>Paint Calculator</h3>
+
                 <div class="grid" id="calcGrid">
-                    <label data-ceiling-hide>Room width (m) <input id="calcWidth" type="number" step="0.01" min="0"
-                            placeholder="e.g., 4.2"></label>
-                    <label data-ceiling-hide>Room length (m) <input id="calcLength" type="number" step="0.01" min="0"
-                            placeholder="e.g., 3.6"></label>
-                    <label id="heightField">Wall height (m) <input id="calcHeight" type="number" step="0.01" min="0"
-                            placeholder="e.g., 2.4"></label>
-                    <label>Number of coats <input id="calcCoats" type="number" min="1" value="2"></label>
-                    <label id="doorsField">Doors <input id="calcDoors" type="number" min="0" value="1"></label>
-                    <label id="windowsField">Windows <input id="calcWindows" type="number" min="0" value="1"></label>
-                    <label>Coverage assumption
+                    <label data-ceiling-hide>
+                        Room width (m)
+                        <input id="calcWidth" type="number" step="0.01" min="0" placeholder="e.g., 4.2">
+                    </label>
+
+                    <label data-ceiling-hide>
+                        Room length (m)
+                        <input id="calcLength" type="number" step="0.01" min="0" placeholder="e.g., 3.6">
+                    </label>
+
+                    <label id="heightField">
+                        Wall height (m)
+                        <input id="calcHeight" type="number" step="0.01" min="0" placeholder="e.g., 2.4">
+                    </label>
+
+                    <label>
+                        Number of coats
+                        <input id="calcCoats" type="number" min="1" value="2">
+                    </label>
+
+                    <label id="doorsField">
+                        Doors
+                        <input id="calcDoors" type="number" min="0" value="1">
+                    </label>
+
+                    <label id="windowsField">
+                        Windows
+                        <input id="calcWindows" type="number" min="0" value="1">
+                    </label>
+
+                    <label>
+                        Coverage assumption
                         <select id="calcCoverage">
                             <option value="12" selected>12 m²/L (typical)</option>
                             <option value="10">10 m²/L</option>
                             <option value="14">14 m²/L</option>
                         </select>
                     </label>
-                    <label>VAT
+
+                    <label>
+                        VAT
                         <select id="calcVAT">
                             <option value="incl" selected>Show inc. VAT</option>
                             <option value="ex">Show ex. VAT</option>
@@ -205,10 +265,17 @@
                 <div class="calc-actions">
                     <button id="calcBtn" class="btn">Calculate litres</button>
                     <button id="calcAddTins" class="btn btn-secondary">Add recommended tins to basket</button>
+
                     <span id="calcResult" class="calc-result" aria-live="polite"></span>
-                    <a href="#contact" class="linklike" id="calcHelp">Need help choosing a finish?</a>
+
+                    <a href="#"
+                       class="linklike"
+                       id="calcHelp"
+                       data-route="contact">Need help choosing a finish?</a>
                 </div>
-                <p class="calc-note">Tip: If you don’t know sizes yet, keep coverage at
+
+                <p class="calc-note">
+                    Tip: If you don’t know sizes yet, keep coverage at
                     <strong>12 m²/L</strong> and we’ll propose tins that cover your estimate.
                 </p>
             </section>
@@ -217,39 +284,64 @@
         </section>
 
         <!-- ====== SERVICES ====== -->
-        <section id="services" class="route" aria-labelledby="services-title">
+        <section id="services" class="route" aria-labelledby="services-title" data-route-panel="services">
             <h2 id="services-title">Services</h2>
+
             <div class="services-grid">
                 <article class="card">
                     <h3>Interior Painting</h3>
                     <p>Walls, ceilings, woodwork and lining paper. Dust-controlled sanding and meticulous prep.</p>
                     <button class="linklike" data-open-system="interior-general">View System Sheet</button>
                 </article>
+
                 <article class="card">
                     <h3>Exterior Painting</h3>
-                    <p>Windows, doors, soffits, fascia boards, gutters & downpipes. Weather-tough systems.</p>
+                    <p>Windows, doors, soffits, fascia boards, gutters &amp; downpipes. Weather-tough systems.</p>
                     <button class="linklike" data-open-system="exterior-general">View System Sheet</button>
                 </article>
+
                 <article class="card">
-                    <h3>Taping & Repairs</h3>
-                    <p>Toupret & Gyproc fillers, taping and jointing, beads and finishing for a flawless base.</p>
+                    <h3>Taping &amp; Repairs</h3>
+                    <p>Toupret &amp; Gyproc fillers, taping and jointing, beads and finishing for a flawless base.</p>
                     <button class="linklike" data-open-system="taping-general">View System Sheet</button>
                 </article>
             </div>
         </section>
 
         <!-- ====== CONTACT ====== -->
-        <section id="contact" class="route" aria-labelledby="contact-title">
+        <section id="contact" class="route" aria-labelledby="contact-title" data-route-panel="contact">
             <h2 id="contact-title">Contact</h2>
+
             <form class="contact-form" onsubmit="event.preventDefault(); alert('Form wired to EmailJS later.');">
                 <div class="grid">
-                    <label>Name <input type="text" required></label>
-                    <label>Email <input type="email" required></label>
-                    <label>Phone <input type="tel"></label>
-                    <label>Address (optional) <input type="text"></label>
-                    <label class="full">Message <textarea rows="4" required></textarea></label>
+                    <label>
+                        Name
+                        <input type="text" required>
+                    </label>
+
+                    <label>
+                        Email
+                        <input type="email" required>
+                    </label>
+
+                    <label>
+                        Phone
+                        <input type="tel">
+                    </label>
+
+                    <label>
+                        Address (optional)
+                        <input type="text">
+                    </label>
+
+                    <label class="full">
+                        Message
+                        <textarea rows="4" required></textarea>
+                    </label>
                 </div>
+
                 <div class="muted">A copy will be CC’d to you automatically.</div>
+
                 <button class="btn">Send</button>
             </form>
         </section>
@@ -268,14 +360,16 @@
     <dialog id="cartModal" class="modal">
         <form method="dialog" class="modal-inner">
             <button class="modal-close" aria-label="Close">×</button>
+
             <div class="system">
                 <h3>Your Basket</h3>
+
                 <div id="cartItems" class="cart-items"></div>
 
                 <h4>Fulfilment</h4>
                 <div class="cart-fulfil">
                     <label><input type="radio" name="fulfil" value="delivery" checked> Delivery</label>
-                    <label><input type="radio" name="fulfil" value="collect"> Click & Collect</label>
+                    <label><input type="radio" name="fulfil" value="collect"> Click &amp; Collect</label>
                     <label>Preferred day <input id="slotDay" type="date"></label>
                     <label>Time slot
                         <select id="slotTime"></select>
@@ -291,6 +385,7 @@
                 <div class="cart-actions">
                     <button id="submitOrder" class="btn">Submit Order</button>
                 </div>
+
                 <p class="muted">On submission we’ll email you a confirmation and send a copy to the business.</p>
             </div>
         </form>
@@ -304,12 +399,12 @@
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
     <!-- Main JS -->
-   <script src="js/script.js" defer></script>
+    <script src="./js/script.js" defer></script>
     <script>
+        // footer year
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 
 </body>
-
 
 </html>
