@@ -35,20 +35,22 @@
         <section id="home" class="route route-active" aria-labelledby="home-title">
             <h1 id="home-title" class="sr-only">Home</h1>
 
-            <!-- HERO with shop-front image slot -->
+            <!-- HERO -->
             <div class="hero">
                 <img id="shopfront-hero" src="https://placehold.co/1600x600?text=Client+Shop+Front+Image"
                     alt="Our shop front" />
                 <div class="hero-overlay">
                     <h2>Professional Decorating in Fife</h2>
                     <p>Interior • Exterior • Repairs • Colour Expertise</p>
+                    <p class="hero-trust muted">⭐ Trusted locally • Premium finishes • Fast, friendly quotes</p>
                     <div class="hero-ctas">
-                        <a href="#catalogue" class="btn">Browse Catalogue</a>
-                        <a href="#contact" class="btn btn-secondary">Get a Quote</a>
+                        <a href="#catalogue" class="btn">Shop Paints & Supplies</a>
+                        <a href="#contact" class="btn btn-secondary">Request Your Free Quote</a>
                     </div>
                 </div>
             </div>
 
+            <!-- INTRO CARDS -->
             <section class="home-grid">
                 <article class="card">
                     <h3>Trusted Brands</h3>
@@ -66,6 +68,43 @@
                 </article>
             </section>
 
+            <!-- Paint Quick Start -->
+            <section id="paint-quick-start" class="strip" aria-labelledby="paint-qs-title">
+                <div class="strip-inner">
+                    <h2 id="paint-qs-title">What are you looking to paint?</h2>
+                    <p class="muted">Choose an area to jump straight to the right paints.</p>
+
+                    <div class="qs">
+                        <div class="qs-actions">
+                            <div class="qs-item">
+                                <a href="#catalogue" data-go-tab="ceiling" class="btn">Ceilings</a>
+                                <small class="hint muted">Low-flash finishes for perfect coverage</small>
+                            </div>
+                            <div class="qs-item">
+                                <a href="#catalogue" data-go-tab="walls" class="btn">Walls</a>
+                                <small class="hint muted">Durable, washable emulsions for busy rooms</small>
+                            </div>
+                            <div class="qs-item">
+                                <a href="#catalogue" data-go-tab="woodwork" class="btn">Woodwork</a>
+                                <small class="hint muted">Smooth satin/gloss for trims & doors</small>
+                            </div>
+                            <div class="qs-item">
+                                <a href="#catalogue" data-go-tab="interior" class="btn">Interior</a>
+                                <small class="hint muted">Complete interior systems & primers</small>
+                            </div>
+                            <div class="qs-item">
+                                <a href="#catalogue" data-go-tab="exterior" class="btn">Exterior</a>
+                                <small class="hint muted">Weather-tough solutions for outdoors</small>
+                            </div>
+                            <div class="qs-item">
+                                <a href="#catalogue" data-go-tab="heritage" class="btn">Dulux Heritage</a>
+                                <small class="hint muted">Luxury tone library with designer colours</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section class="strip">
                 <div class="strip-inner">
                     <h3>Areas We Cover</h3>
@@ -74,11 +113,32 @@
             </section>
         </section>
 
+        <!-- Quote banner -->
+        <section class="strip">
+            <div class="strip-inner" style="text-align:center">
+                <h3>Ready to transform your space?</h3>
+                <a href="#contact" class="btn">Get Your Free Quote</a>
+            </div>
+        </section>
+
+        <!-- Trust & proof -->
+        <section class="strip">
+            <div class="strip-inner">
+                <h3>Why choose PainterPro?</h3>
+                <ul class="bullets">
+                    <li>⭐ Top-rated locally — reliable, tidy workmanship</li>
+                    <li>🎨 Premium brands only: Dulux, Crown, Johnstone’s, Tikkurila</li>
+                    <li>🕓 Fast turnaround and guaranteed finish quality</li>
+                    <li>📍 Based in Fife — we cover surrounding areas</li>
+                </ul>
+            </div>
+        </section>
+
         <!-- ====== CATALOGUE ====== -->
         <section id="catalogue" class="route" aria-labelledby="catalogue-title">
             <h2 id="catalogue-title">Paint Catalogue</h2>
 
-            <!-- Sticky tab bar -->
+            <!-- Sticky tabs -->
             <div class="tabs" role="tablist" aria-label="Catalogue tabs">
                 <button role="tab" class="tab is-active" data-tab="ceiling">Ceiling</button>
                 <button role="tab" class="tab" data-tab="walls">Walls</button>
@@ -89,7 +149,7 @@
                 <button role="tab" class="tab" data-tab="heritage">Dulux Heritage</button>
             </div>
 
-            <!-- Search + filters -->
+            <!-- Filters -->
             <div class="controls">
                 <div class="search">
                     <input id="searchInput" type="search" placeholder="Search brand or product…" />
@@ -115,6 +175,7 @@
 
             <!-- Calculator -->
             <section class="calculator">
+                <p class="calc-lead muted">Not sure how much paint you need? Try our free calculator.</p>
                 <h3>Paint Calculator</h3>
                 <div class="grid" id="calcGrid">
                     <label data-ceiling-hide>Room width (m) <input id="calcWidth" type="number" step="0.01" min="0"
@@ -145,12 +206,13 @@
                     <button id="calcBtn" class="btn">Calculate litres</button>
                     <button id="calcAddTins" class="btn btn-secondary">Add recommended tins to basket</button>
                     <span id="calcResult" class="calc-result" aria-live="polite"></span>
+                    <a href="#contact" class="linklike" id="calcHelp">Need help choosing a finish?</a>
                 </div>
-                <p class="calc-note">Tip: If you don’t know sizes yet, keep coverage at <strong>12 m²/L</strong> and
-                    we’ll propose tins that cover your estimate.</p>
+                <p class="calc-note">Tip: If you don’t know sizes yet, keep coverage at
+                    <strong>12 m²/L</strong> and we’ll propose tins that cover your estimate.
+                </p>
             </section>
 
-            <!-- Results grid -->
             <section id="results" class="results" aria-live="polite"></section>
         </section>
 
@@ -194,7 +256,7 @@
 
     </main>
 
-    <!-- ====== SYSTEM SHEET MODAL ====== -->
+    <!-- ====== SYSTEM MODAL ====== -->
     <dialog id="systemModal" class="modal">
         <form method="dialog" class="modal-inner">
             <button class="modal-close" aria-label="Close">×</button>
@@ -202,7 +264,7 @@
         </form>
     </dialog>
 
-    <!-- ====== CART / BASKET MODAL ====== -->
+    <!-- ====== CART MODAL ====== -->
     <dialog id="cartModal" class="modal">
         <form method="dialog" class="modal-inner">
             <button class="modal-close" aria-label="Close">×</button>
@@ -238,11 +300,15 @@
         <p>© <span id="year"></span> PainterPro. All rights reserved.</p>
     </footer>
 
-    <!-- DEFER makes first-load interactions reliable -->
-    <script src="script.js" defer></script>
+    <!-- Toast notification -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <!-- Main JS -->
+    <script src="/js/script.js" defer></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 
 </body>
 
-
 </html>
-
