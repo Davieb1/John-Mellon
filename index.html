@@ -4,384 +4,285 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Painter Pro | Fife</title>
+    <title>Painter Pro | Professional Painters & Decorators in Fife</title>
     <link rel="stylesheet" href="style.css" />
+    <script defer src="cart.js"></script>
+    <script defer src="nav.js"></script>
 </head>
 
 <body>
-    <!-- ====== GLOBAL NAV ====== -->
+    <!-- ====== GLOBAL HEADER / NAV ====== -->
     <header class="site-header">
-        <nav class="nav">
-            <!-- Brand just jumps to top/hero -->
-            <a class="brand" href="#home">PainterPro</a>
+        <nav class="nav container">
+            <!-- Brand -->
+            <a class="brand" href="index.html">
+                <span class="brand-main">Prime Decorating Supplies</span>
+                <span class="brand-sub">Fife</span>
+            </a>
 
-            <button class="nav-toggle" aria-expanded="false" aria-controls="navlinks">☰</button>
+            <!-- Mobile nav toggle -->
+            <button class="nav-toggle" aria-expanded="false" aria-controls="navlinks">
+                ☰
+            </button>
 
+            <!-- Nav links -->
             <ul id="navlinks" class="links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#catalogue">Paint Catalogue</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="catalogue.html">Paint Catalogue</a></li>
+                <li><a href="contact.html">Get a Quote</a></li>
             </ul>
 
-            <!-- Basket -->
-            <button id="openCart" class="cart-btn" aria-label="Open basket">
-                🧺 <span id="cartCount">0</span>
-            </button>
+            <!-- Cart wrapper -->
+            <div class="cart-wrapper">
+                <button class="cart-btn" id="cartToggle" aria-label="Open basket preview" type="button">
+                    🧺 <span id="cartCount">0</span>
+                </button>
+
+                <!-- Cart preview dropdown -->
+                <div class="cart-preview" id="cartPreview">
+                    <div class="cart-preview-head">
+                        <div class="cart-preview-title">Your Basket</div>
+                        <button class="cart-close-btn" id="cartCloseBtn" type="button">✕</button>
+                    </div>
+
+                    <div class="cart-preview-body" id="cartPreviewBody">
+                        <!-- We’ll inject line items here via JS -->
+                        <div class="cart-preview-empty">Your basket is empty.</div>
+                    </div>
+
+                    <div class="cart-preview-foot">
+                        <div class="cart-preview-total">
+                            <span>Subtotal:</span>
+                            <strong id="cartPreviewSubtotal">£0.00</strong>
+                        </div>
+                        <a class="btn btn-dark cart-preview-link" href="basket.html"
+                            style="width:100%; text-align:center; font-size:.8rem;">
+                            Go to basket →
+                        </a>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
 
-    <!-- ====== PAGE CONTENT ====== -->
-    <main id="app">
 
-        <!-- ====== HOME / HERO ====== -->
-        <section id="home" aria-labelledby="home-title">
-            <h1 id="home-title" class="sr-only">Home</h1>
+    <main>
 
-            <!-- HERO -->
-            <div class="hero">
-                <img
-                    id="shopfront-hero"
-                    src="https://placehold.co/1600x600?text=Client+Shop+Front+Image"
-                    alt="Our shop front"
-                />
-                <div class="hero-overlay">
-                    <h2>Professional Decorating in Fife</h2>
-                    <p>Interior • Exterior • Repairs • Colour Expertise</p>
-                    <p class="hero-trust muted">⭐ Trusted locally • Premium finishes • Fast, friendly quotes</p>
+        <!-- ====== HERO ====== -->
+        <section class="hero">
+            <div class="container hero-inner">
+                <!-- Left: Copy -->
+                <div class="hero-copy">
+                    <h1>Professional Painters &amp; Decorators in Fife</h1>
+                    <p class="lead">
+                        Clean lines. Zero mess. Trade-grade finishes that last.
+                        Interior, exterior, domestic and commercial.
+                    </p>
 
                     <div class="hero-ctas">
-                        <a href="#catalogue" class="btn">Shop Paints &amp; Supplies</a>
-                        <a href="#contact" class="btn btn-secondary">Request Your Free Quote</a>
+                        <a class="btn btn-primary" href="contact.html">Book a Free Quote</a>
+                        <a class="btn btn-outline" href="catalogue.html">Browse Paint Colours</a>
                     </div>
+
+                    <ul class="trust-points">
+                        <li>✔ Fully insured</li>
+                        <li>✔ Dust-controlled prep</li>
+                        <li>✔ Flexible evening &amp; weekend slots</li>
+                    </ul>
                 </div>
-            </div>
 
-            <!-- INTRO CARDS -->
-            <section class="home-grid">
-                <article class="card">
-                    <h3>Trusted Brands</h3>
-                    <p>Dulux, Johnstone’s, Crown, Tikkurila, Toupret, Gyproc and more.</p>
-                </article>
+                <!-- Right: Featured paint card -->
+                <div class="hero-card">
+                    <div class="hero-card-header">
+                        <span class="badge">Most Requested</span>
+                        <h2>Kitchen / Living Refresh</h2>
+                    </div>
+                    <p class="hero-card-text">
+                        High-cover, scrubbable matt for busy family rooms.
+                        Wipeable finish. No shine. No yellowing.
+                    </p>
 
-                <article class="card">
-                    <h3>Calculator &amp; Basket</h3>
-                    <p>Estimate litres, then add recommended tins to your basket in one click.</p>
-                    <a href="#catalogue" class="text-link">Open catalogue &amp; calculator →</a>
-                </article>
-
-                <article class="card">
-                    <h3>Dulux Heritage</h3>
-                    <p>Explore Pale, Mid, Deep Tones and Whites with larger swatches.</p>
-                    <a href="#catalogue" class="text-link">Jump to Heritage →</a>
-                </article>
-            </section>
-
-            <!-- Paint Quick Start -->
-            <section id="paint-quick-start" class="strip" aria-labelledby="paint-qs-title">
-                <div class="strip-inner">
-                    <h2 id="paint-qs-title">What are you looking to paint?</h2>
-                    <p class="muted">Choose an area to jump straight to the right paints.</p>
-
-                    <div class="qs">
-                        <div class="qs-actions">
-                            <div class="qs-item">
-                                <a href="#catalogue" class="btn">Ceilings</a>
-                                <small class="hint muted">Low-flash finishes for perfect coverage</small>
+                    <div class="swatch-list">
+                        <div class="swatch">
+                            <span class="colour" style="background:#d8d2c4;"></span>
+                            <div class="meta">
+                                <div class="name">Heritage Stone</div>
+                                <div class="finish">Velvet Matt</div>
                             </div>
+                        </div>
 
-                            <div class="qs-item">
-                                <a href="#catalogue" class="btn">Walls</a>
-                                <small class="hint muted">Durable, washable emulsions for busy rooms</small>
+                        <div class="swatch">
+                            <span class="colour" style="background:#cbd3da;"></span>
+                            <div class="meta">
+                                <div class="name">Coastal Grey</div>
+                                <div class="finish">Scrubbable Matt</div>
                             </div>
+                        </div>
 
-                            <div class="qs-item">
-                                <a href="#catalogue" class="btn">Woodwork</a>
-                                <small class="hint muted">Smooth satin/gloss for trims &amp; doors</small>
-                            </div>
-
-                            <div class="qs-item">
-                                <a href="#catalogue" class="btn">Interior</a>
-                                <small class="hint muted">Complete interior systems &amp; primers</small>
-                            </div>
-
-                            <div class="qs-item">
-                                <a href="#catalogue" class="btn">Exterior</a>
-                                <small class="hint muted">Weather-tough solutions for outdoors</small>
-                            </div>
-
-                            <div class="qs-item">
-                                <a href="#catalogue" class="btn">Dulux Heritage</a>
-                                <small class="hint muted">Luxury tone library with designer colours</small>
+                        <div class="swatch">
+                            <span class="colour" style="background:#f5efe2;border:1px solid #ddd;"></span>
+                            <div class="meta">
+                                <div class="name">Warm Linen</div>
+                                <div class="finish">Kitchen &amp; Bath</div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
 
-            <!-- Coverage strip -->
-            <section class="strip">
-                <div class="strip-inner">
-                    <h3>Areas We Cover</h3>
-                    <p>Markinch • Fife and surrounding areas</p>
+                    <a class="mini-link" href="catalogue.html">See full colour range →</a>
                 </div>
-            </section>
-        </section>
-
-        <!-- ===== Quote banner ===== -->
-        <section class="strip promo-quote">
-            <div class="strip-inner" style="text-align:center">
-                <h3>Ready to transform your space?</h3>
-                <a href="#contact" class="btn">Get Your Free Quote</a>
             </div>
         </section>
 
-        <!-- ===== Trust & proof ===== -->
-        <section class="strip trust-strip">
-            <div class="strip-inner">
-                <h3>Why choose PainterPro?</h3>
-                <ul class="bullets">
-                    <li>⭐ Top-rated locally — reliable, tidy workmanship</li>
-                    <li>🎨 Premium brands only: Dulux, Crown, Johnstone’s, Tikkurila</li>
-                    <li>🕓 Fast turnaround and guaranteed finish quality</li>
-                    <li>📍 Based in Fife — we cover surrounding areas</li>
-                </ul>
+        <!-- ====== WHY CHOOSE US ====== -->
+        <section class="why">
+            <div class="container">
+                <h2 class="section-title">Why people call PainterPro</h2>
+
+                <div class="why-grid">
+                    <div class="why-card">
+                        <h3>We keep your house liveable</h3>
+                        <p>
+                            Floors sheeted, furniture wrapped, extractor sanding. No chaos.
+                            You don't come home to a bomb site.
+                        </p>
+                    </div>
+
+                    <div class="why-card">
+                        <h3>Trade-only materials</h3>
+                        <p>
+                            We supply high-coverage paints you can't just grab off a DIY shelf.
+                            Better coverage = fewer coats = lower labour cost.
+                        </p>
+                    </div>
+
+                    <div class="why-card">
+                        <h3>Guaranteed finish</h3>
+                        <p>
+                            We only sign off when you're happy.
+                            Snag list handled before we leave, not two weeks later.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- ====== CATALOGUE ====== -->
-        <section id="catalogue" aria-labelledby="catalogue-title">
-            <h2 id="catalogue-title">Paint Catalogue</h2>
-
-            <!-- Sticky tabs -->
-            <div class="tabs" role="tablist" aria-label="Catalogue tabs">
-                <button role="tab" class="tab is-active" data-tab="ceiling">Ceiling</button>
-                <button role="tab" class="tab" data-tab="walls">Walls</button>
-                <button role="tab" class="tab" data-tab="woodwork">Woodwork</button>
-                <button role="tab" class="tab" data-tab="interior">Interior</button>
-                <button role="tab" class="tab" data-tab="exterior">Exterior</button>
-                <button role="tab" class="tab" data-tab="taping">Taping Material</button>
-                <button role="tab" class="tab" data-tab="heritage">Dulux Heritage</button>
-            </div>
-
-            <!-- Filters -->
-            <div class="controls">
-                <div class="search">
-                    <input id="searchInput" type="search" placeholder="Search brand or product…" />
-                    <label class="search-all">
-                        <input id="searchAll" type="checkbox" />
-                        Search all tabs
-                    </label>
+        <!-- ====== SERVICES TEASER ====== -->
+        <section class="services-teaser">
+            <div class="container">
+                <div class="services-head">
+                    <h2 class="section-title">What we do</h2>
+                    <a class="view-all" href="services.html">See all services →</a>
                 </div>
 
-                <div class="filters">
-                    <select id="filterBrand">
-                        <option value="">All brands</option>
-                    </select>
-                    <select id="filterFinish">
-                        <option value="">All finishes</option>
-                    </select>
-                    <select id="filterUse">
-                        <option value="">All uses</option>
-                        <option value="interior">Interior</option>
-                        <option value="exterior">Exterior</option>
-                    </select>
+                <div class="service-grid">
+                    <a class="service-card" href="services.html#interior">
+                        <div class="service-top">
+                            <div class="service-icon">🖌</div>
+                            <h3>Interior Painting</h3>
+                        </div>
+                        <p>
+                            Walls, ceilings, woodwork (doors, skirting, banisters). Sharp edges, smooth finish.
+                        </p>
+                        <span class="service-more">Learn more →</span>
+                    </a>
+
+                    <a class="service-card" href="services.html#exterior">
+                        <div class="service-top">
+                            <div class="service-icon">🏠</div>
+                            <h3>Exterior &amp; Masonry</h3>
+                        </div>
+                        <p>
+                            Weatherproof coatings for brick, render, fascias and window frames. Fresh kerb appeal.
+                        </p>
+                        <span class="service-more">Learn more →</span>
+                    </a>
+
+                    <a class="service-card" href="services.html#commercial">
+                        <div class="service-top">
+                            <div class="service-icon">🏢</div>
+                            <h3>Commercial / Let Prep</h3>
+                        </div>
+                        <p>
+                            Fast turnaround for rentals, offices and shops. In, done, keys back.
+                        </p>
+                        <span class="service-more">Learn more →</span>
+                    </a>
                 </div>
-            </div>
-
-            <!-- Calculator -->
-            <section class="calculator">
-                <p class="calc-lead muted">Not sure how much paint you need? Try our free calculator.</p>
-                <h3>Paint Calculator</h3>
-
-                <div class="grid" id="calcGrid">
-                    <label data-ceiling-hide>
-                        Room width (m)
-                        <input id="calcWidth" type="number" step="0.01" min="0" placeholder="e.g., 4.2">
-                    </label>
-
-                    <label data-ceiling-hide>
-                        Room length (m)
-                        <input id="calcLength" type="number" step="0.01" min="0" placeholder="e.g., 3.6">
-                    </label>
-
-                    <label id="heightField">
-                        Wall height (m)
-                        <input id="calcHeight" type="number" step="0.01" min="0" placeholder="e.g., 2.4">
-                    </label>
-
-                    <label>
-                        Number of coats
-                        <input id="calcCoats" type="number" min="1" value="2">
-                    </label>
-
-                    <label id="doorsField">
-                        Doors
-                        <input id="calcDoors" type="number" min="0" value="1">
-                    </label>
-
-                    <label id="windowsField">
-                        Windows
-                        <input id="calcWindows" type="number" min="0" value="1">
-                    </label>
-
-                    <label>
-                        Coverage assumption
-                        <select id="calcCoverage">
-                            <option value="12" selected>12 m²/L (typical)</option>
-                            <option value="10">10 m²/L</option>
-                            <option value="14">14 m²/L</option>
-                        </select>
-                    </label>
-
-                    <label>
-                        VAT
-                        <select id="calcVAT">
-                            <option value="incl" selected>Show inc. VAT</option>
-                            <option value="ex">Show ex. VAT</option>
-                        </select>
-                    </label>
-                </div>
-
-                <div class="calc-actions">
-                    <button id="calcBtn" class="btn" type="button">Calculate litres</button>
-                    <button id="calcAddTins" class="btn btn-secondary" type="button">Add recommended tins to basket</button>
-
-                    <span id="calcResult" class="calc-result" aria-live="polite"></span>
-
-                    <a href="#contact" class="linklike" id="calcHelp">Need help choosing a finish?</a>
-                </div>
-
-                <p class="calc-note">
-                    Tip: If you don’t know sizes yet, keep coverage at
-                    <strong>12 m²/L</strong> and we’ll propose tins that cover your estimate.
-                </p>
-            </section>
-
-            <section id="results" class="results" aria-live="polite"></section>
-        </section>
-
-        <!-- ====== SERVICES ====== -->
-        <section id="services" aria-labelledby="services-title">
-            <h2 id="services-title">Services</h2>
-
-            <div class="services-grid">
-                <article class="card">
-                    <h3>Interior Painting</h3>
-                    <p>Walls, ceilings, woodwork and lining paper. Dust-controlled sanding and meticulous prep.</p>
-                    <button class="linklike" data-open-system="interior-general" type="button">View System Sheet</button>
-                </article>
-
-                <article class="card">
-                    <h3>Exterior Painting</h3>
-                    <p>Windows, doors, soffits, fascia boards, gutters &amp; downpipes. Weather-tough systems.</p>
-                    <button class="linklike" data-open-system="exterior-general" type="button">View System Sheet</button>
-                </article>
-
-                <article class="card">
-                    <h3>Taping &amp; Repairs</h3>
-                    <p>Toupret &amp; Gyproc fillers, taping and jointing, beads and finishing for a flawless base.</p>
-                    <button class="linklike" data-open-system="taping-general" type="button">View System Sheet</button>
-                </article>
             </div>
         </section>
 
-        <!-- ====== CONTACT ====== -->
-        <section id="contact" aria-labelledby="contact-title">
-            <h2 id="contact-title">Contact</h2>
-
-            <form class="contact-form" onsubmit="event.preventDefault(); alert('Form wired to EmailJS later.');">
-                <div class="grid">
-                    <label>
-                        Name
-                        <input type="text" required>
-                    </label>
-
-                    <label>
-                        Email
-                        <input type="email" required>
-                    </label>
-
-                    <label>
-                        Phone
-                        <input type="tel">
-                    </label>
-
-                    <label>
-                        Address (optional)
-                        <input type="text">
-                    </label>
-
-                    <label class="full">
-                        Message
-                        <textarea rows="4" required></textarea>
-                    </label>
+        <!-- ====== CTA STRIP ====== -->
+        <section class="cta-strip">
+            <div class="container cta-inner">
+                <div class="cta-text">
+                    <p class="cta-eyebrow">Need it sorted soon?</p>
+                    <p class="cta-line">
+                        Ask about next-week availability. Evening and weekend slots go first.
+                    </p>
                 </div>
 
-                <div class="muted">A copy will be CC’d to you automatically.</div>
-
-                <button class="btn">Send</button>
-            </form>
+                <a class="btn btn-dark" href="contact.html">Check Availability</a>
+            </div>
         </section>
 
     </main>
 
-    <!-- ====== SYSTEM MODAL ====== -->
-    <dialog id="systemModal" class="modal">
-        <form method="dialog" class="modal-inner">
-            <button class="modal-close" aria-label="Close" type="submit">×</button>
-            <div id="systemContent"></div>
-        </form>
-    </dialog>
-
-    <!-- ====== CART MODAL ====== -->
-    <dialog id="cartModal" class="modal">
-        <form method="dialog" class="modal-inner">
-            <button class="modal-close" aria-label="Close" type="submit">×</button>
-
-            <div class="system">
-                <h3>Your Basket</h3>
-
-                <div id="cartItems" class="cart-items"></div>
-
-                <h4>Fulfilment</h4>
-                <div class="cart-fulfil">
-                    <label><input type="radio" name="fulfil" value="delivery" checked> Delivery</label>
-                    <label><input type="radio" name="fulfil" value="collect"> Click &amp; Collect</label>
-                    <label>Preferred day <input id="slotDay" type="date"></label>
-                    <label>Time slot
-                        <select id="slotTime"></select>
-                    </label>
-                </div>
-
-                <div class="cart-summary">
-                    <div><strong>Subtotal:</strong> <span id="cartSubtotal">£0.00</span></div>
-                    <div><strong>VAT (20%):</strong> <span id="cartVAT">£0.00</span></div>
-                    <div><strong>Total:</strong> <span id="cartTotal">£0.00</span></div>
-                </div>
-
-                <div class="cart-actions">
-                    <button id="submitOrder" class="btn" type="button">Submit Order</button>
-                </div>
-
-                <p class="muted">On submission we’ll email you a confirmation and send a copy to the business.</p>
-            </div>
-        </form>
-    </dialog>
-
+    <!-- ====== FOOTER ====== -->
     <footer class="site-footer">
-        <p>© <span id="year"></span> PainterPro. All rights reserved.</p>
+        <div class="container footer-grid">
+
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <span class="brand-main">PainterPro</span>
+                    <span class="brand-sub">Fife</span>
+                </div>
+                <p class="footer-tag">
+                    Clean, reliable painting &amp; decorating across Fife.
+                </p>
+                <p class="footer-small">
+                    Fully insured. Domestic &amp; commercial.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="catalogue.html">Paint Catalogue</a></li>
+                    <li><a href="basket.html">Basket</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Get a quote</h4>
+                <ul>
+                    <li><a href="contact.html">Request a visit</a></li>
+                    <li><a href="tel:+440000000000">Call 1234 567 890</a></li>
+                    <li><a href="mailto:info@painterprofife.co.uk">info@painterprofife.co.uk</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Areas we cover</h4>
+                <ul>
+                    <li>Leven</li>
+                    <li>Kirkcaldy</li>
+                    <li>Glenrothes</li>
+                    <li>St Andrews</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p class="legal">© PainterPro Fife. All rights reserved.</p>
+                <p class="legal"><a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
     </footer>
 
-    <!-- Toast notification -->
-    <div id="toast" class="toast" role="status" aria-live="polite"></div>
-
-    <!-- JS bundle -->
-    <script src="./js/script.js" defer></script>
-    <script>
-        // just set the footer year early in case JS fails
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
-
 </body>
+
 </html>

@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Your Basket | PainterPro Fife</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- scripts: cart first so basket table renders, then nav -->
+    <script defer src="cart.js"></script>
+    <script defer src="nav.js"></script>
+</head>
+
+<body>
+
+    <!-- ====== GLOBAL HEADER / NAV WITH PREVIEW ====== -->
+    <header class="site-header">
+        <nav class="nav container">
+            <!-- Brand -->
+            <a class="brand" href="index.html">
+                <span class="brand-main">PainterPro</span>
+                <span class="brand-sub">Fife</span>
+            </a>
+
+            <!-- Mobile nav toggle -->
+            <button class="nav-toggle" aria-expanded="false" aria-controls="navlinks">
+                ☰
+            </button>
+
+            <!-- Nav links -->
+            <ul id="navlinks" class="links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="catalogue.html">Paint Catalogue</a></li>
+                <li><a href="contact.html">Get a Quote</a></li>
+                <li><a href="basket.html" class="active">Basket</a></li>
+            </ul>
+
+            <!-- Cart wrapper -->
+            <div class="cart-wrapper">
+                <button class="cart-btn" id="cartToggle" aria-label="Open basket preview" type="button">
+                    🧺 <span id="cartCount">0</span>
+                </button>
+
+                <!-- Cart preview dropdown -->
+                <div class="cart-preview" id="cartPreview">
+                    <div class="cart-preview-head">
+                        <div class="cart-preview-title">Your Basket</div>
+                        <button class="cart-close-btn" id="cartCloseBtn" type="button">✕</button>
+                    </div>
+
+                    <div class="cart-preview-body" id="cartPreviewBody">
+                        <div class="cart-preview-empty">Your basket is empty.</div>
+                    </div>
+
+                    <div class="cart-preview-foot">
+                        <div class="cart-preview-total">
+                            <span>Subtotal:</span>
+                            <strong id="cartPreviewSubtotal">£0.00</strong>
+                        </div>
+                        <a class="btn btn-dark cart-preview-link" href="basket.html"
+                            style="width:100%; text-align:center; font-size:.8rem;">
+                            Go to basket →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main style="padding-top:2rem; padding-bottom:2rem;">
+
+        <div class="container" style="display:grid; gap:2rem; max-width:1100px;">
+
+            <!-- ====== BASKET TABLE CARD ====== -->
+            <section class="service-card" style="box-shadow:var(--shadow-card);">
+                <div class="service-top" style="margin-bottom:1rem;">
+                    <div class="service-icon">🧺</div>
+                    <h2 style="font-size:1rem; font-weight:600; color:var(--text-dark);">
+                        Items in your basket
+                    </h2>
+                </div>
+
+                <div style="overflow-x:auto;">
+                    <table style="width:100%; border-collapse:collapse; font-size:.85rem; line-height:1.4;">
+                        <thead
+                            style="text-align:left; color:var(--text-dark); font-weight:600; font-size:.8rem; border-bottom:1px solid var(--border-soft);">
+                            <tr>
+                                <th style="padding:.5rem .5rem;">Product</th>
+                                <th style="padding:.5rem .5rem;">Finish</th>
+                                <th style="padding:.5rem .5rem;">Size</th>
+                                <th style="padding:.5rem .5rem;">Price</th>
+                                <th style="padding:.5rem .5rem;">Qty</th>
+                                <th style="padding:.5rem .5rem; text-align:right;">Total</th>
+                                <th style="padding:.5rem .5rem;"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="basketBody" style="border-bottom:1px solid var(--border-soft);">
+                            <!-- JS injects rows -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="display:grid; justify-content:end; font-size:.85rem; line-height:1.4; padding:1rem 0 0 0;">
+                    <div style="display:flex; justify-content:space-between; gap:2rem;">
+                        <span style="color:var(--text-mid);">Subtotal</span>
+                        <strong id="basketSubtotal" style="color:var(--text-dark); font-weight:600;">£0.00</strong>
+                    </div>
+
+                    <div style="display:flex; justify-content:space-between; gap:2rem;">
+                        <span style="color:var(--text-mid);">VAT (20%)</span>
+                        <strong id="basketVAT" style="color:var(--text-dark); font-weight:600;">£0.00</strong>
+                    </div>
+
+                    <div
+                        style="display:flex; justify-content:space-between; gap:2rem; font-size:.9rem; margin-top:.5rem;">
+                        <span style="color:var(--text-dark); font-weight:600;">Total (inc VAT)</span>
+                        <strong id="basketTotal" style="color:var(--text-dark); font-weight:600;">£0.00</strong>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ====== DELIVERY / COLLECTION DETAILS FORM CARD ====== -->
+            <section class="service-card" style="box-shadow:var(--shadow-card);">
+                <div class="service-top" style="margin-bottom:1rem;">
+                    <div class="service-icon">✉️</div>
+                    <h2 style="font-size:1rem; font-weight:600; color:var(--text-dark);">
+                        Delivery / Collection Details
+                    </h2>
+                </div>
+
+                <!-- UPDATED FORM STARTS HERE -->
+                <form id="basketForm" style="display:grid; gap:1rem;" method="post"
+                    action="mailto:info@painterprofife.co.uk" enctype="text/plain">
+
+                    <!-- Name -->
+                    <div style="display:grid; gap:.4rem;">
+                        <label for="cust_name" style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                            Your name*
+                        </label>
+                        <input id="cust_name" name="name" type="text" required
+                            style="width:100%; font-size:.9rem; padding:.75rem .75rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft);"
+                            placeholder="Jane Smith" />
+                    </div>
+
+                    <!-- Phone -->
+                    <div style="display:grid; gap:.4rem;">
+                        <label for="cust_phone" style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                            Phone number*
+                        </label>
+                        <input id="cust_phone" name="phone" type="tel" required
+                            style="width:100%; font-size:.9rem; padding:.75rem .75rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft);"
+                            placeholder="07..." />
+                        <p style="font-size:.7rem; color:var(--text-mid); line-height:1.4;">
+                            We'll call/text to confirm your order or booking time.
+                        </p>
+                    </div>
+
+                    <!-- Address line 1 -->
+                    <div style="display:grid; gap:.4rem;">
+                        <label for="cust_addr1" style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                            Address line 1*
+                        </label>
+                        <input id="cust_addr1" name="address_line_1" type="text" required
+                            style="width:100%; font-size:.9rem; padding:.75rem .75rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft);"
+                            placeholder="12 High Street" />
+                    </div>
+
+                    <!-- Address line 2 -->
+                    <div style="display:grid; gap:.4rem;">
+                        <label for="cust_addr2" style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                            Address line 2 (optional)
+                        </label>
+                        <input id="cust_addr2" name="address_line_2" type="text"
+                            style="width:100%; font-size:.9rem; padding:.75rem .75rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft);"
+                            placeholder="Flat 2 / Building name" />
+                    </div>
+
+                    <!-- Town / City -->
+                    <div style="display:grid; gap:.4rem;">
+                        <label for="cust_town" style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                            Town / City*
+                        </label>
+                        <input id="cust_town" name="town" type="text" required
+                            style="width:100%; font-size:.9rem; padding:.75rem .75rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft);"
+                            placeholder="Leven" />
+                    </div>
+
+                    <!-- Postcode -->
+                    <div style="display:grid; gap:.4rem;">
+                        <label for="cust_postcode" style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                            Postcode*
+                        </label>
+                        <input id="cust_postcode" name="postcode" type="text" required
+                            style="width:100%; font-size:.9rem; padding:.75rem .75rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft); text-transform:uppercase;"
+                            placeholder="KY8..." />
+                    </div>
+
+                    <!-- Fulfilment choice -->
+                    <div style="display:grid; gap:.4rem;">
+                        <span style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                            How do you want this?
+                        </span>
+
+                        <label
+                            style="font-size:.8rem; color:var(--text-dark); display:flex; align-items:center; gap:.5rem;">
+                            <input type="radio" name="fulfilment" value="Click & Collect" required />
+                            <span>Click &amp; Collect</span>
+                        </label>
+
+                        <label
+                            style="font-size:.8rem; color:var(--text-dark); display:flex; align-items:center; gap:.5rem;">
+                            <input type="radio" name="fulfilment" value="Deliver to me" />
+                            <span>Delivery to this address</span>
+                        </label>
+
+                        <label
+                            style="font-size:.8rem; color:var(--text-dark); display:flex; align-items:center; gap:.5rem;">
+                            <input type="radio" name="fulfilment" value="Supply & Apply" />
+                            <span>Supply &amp; apply it for me (full job)</span>
+                        </label>
+                    </div>
+
+                    <!-- Notes -->
+                    <div style="display:grid; gap:.4rem;">
+                        <label for="cust_notes" style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                            Notes (access, parking, colours, etc.)
+                        </label>
+                        <textarea id="cust_notes" name="notes" rows="4"
+                            style="width:100%; font-size:.9rem; line-height:1.4; padding:.75rem .75rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft); resize:vertical;"
+                            placeholder="Example: Deliver to back door, dog in house, match 'Coastal Grey' for lounge."></textarea>
+                    </div>
+
+                    <!-- Hidden summary fields injected by JS -->
+                    <div id="cartSummaryMount"></div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="btn btn-primary" style="justify-self:start; cursor:pointer;">
+                        Send Order / Request
+                    </button>
+
+                    <p style="font-size:.7rem; color:var(--text-mid); line-height:1.4;">
+                        We’ll confirm price, delivery/collection time, or arrange a visit for supply &amp; apply jobs.
+                    </p>
+                </form>
+                <!-- UPDATED FORM ENDS HERE -->
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <span class="brand-main">PainterPro</span>
+                    <span class="brand-sub">Fife</span>
+                </div>
+                <p class="footer-tag">
+                    Clean, reliable painting &amp; decorating across Fife.
+                </p>
+                <p class="footer-small">
+                    Fully insured. Domestic &amp; commercial.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="catalogue.html">Paint Catalogue</a></li>
+                    <li><a href="basket.html">Basket</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Get a quote</h4>
+                <ul>
+                    <li><a href="contact.html">Request a visit</a></li>
+                    <li><a href="tel:+440000000000">Call 1234 567 890</a></li>
+                    <li><a href="mailto:info@painterprofife.co.uk">info@painterprofife.co.uk</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Areas we cover</h4>
+                <ul>
+                    <li>Leven</li>
+                    <li>Kirkcaldy</li>
+                    <li>Glenrothes</li>
+                    <li>St Andrews</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p class="legal">© PainterPro Fife. All rights reserved.</p>
+                <p class="legal"><a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Get a Quote | Painter Pro Fife</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Order: cart.js first (so preview + cartCount works), then nav, then contact.js -->
+    <script defer src="cart.js"></script>
+    <script defer src="nav.js"></script>
+    <script defer src="contact.js"></script>
+</head>
+
+<body>
+    <!-- ====== GLOBAL HEADER / NAV WITH PREVIEW ====== -->
+    <header class="site-header">
+        <nav class="nav container">
+            <!-- Brand -->
+            <a class="brand" href="index.html">
+                <span class="brand-main">PainterPro</span>
+                <span class="brand-sub">Fife</span>
+            </a>
+
+            <!-- Mobile nav toggle -->
+            <button class="nav-toggle" aria-expanded="false" aria-controls="navlinks">
+                ☰
+            </button>
+
+            <!-- Nav links -->
+            <ul id="navlinks" class="links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="catalogue.html">Paint Catalogue</a></li>
+                <li><a href="contact.html" class="active">Get a Quote</a></li>
+            </ul>
+
+            <!-- Cart wrapper -->
+            <div class="cart-wrapper">
+                <button class="cart-btn" id="cartToggle" aria-label="Open basket preview" type="button">
+                    🧺 <span id="cartCount">0</span>
+                </button>
+
+                <!-- Cart preview dropdown -->
+                <div class="cart-preview" id="cartPreview">
+                    <div class="cart-preview-head">
+                        <div class="cart-preview-title">Your Basket</div>
+                        <button class="cart-close-btn" id="cartCloseBtn" type="button">✕</button>
+                    </div>
+
+                    <div class="cart-preview-body" id="cartPreviewBody">
+                        <div class="cart-preview-empty">Your basket is empty.</div>
+                    </div>
+
+                    <div class="cart-preview-foot">
+                        <div class="cart-preview-total">
+                            <span>Subtotal:</span>
+                            <strong id="cartPreviewSubtotal">£0.00</strong>
+                        </div>
+                        <a class="btn btn-dark cart-preview-link" href="basket.html"
+                            style="width:100%; text-align:center; font-size:.8rem;">
+                            Go to basket →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ====== INTRO STRIP ====== -->
+        <section class="why" style="padding-top:2rem; padding-bottom:2rem;">
+            <div class="container" style="display:grid; gap:1rem;">
+                <h1 class="section-title" style="font-size:1.5rem; margin-bottom:.25rem;">
+                    Request a Visit / Get Booked In
+                </h1>
+
+                <p style="max-width:60ch; font-size:.95rem; color:var(--text-mid); line-height:1.5;">
+                    Tell us briefly what needs done. We’ll get back to you, arrange a visit if needed,
+                    and confirm final price. No pushy sales.
+                </p>
+
+                <p style="font-size:.8rem; color:var(--text-mid); line-height:1.4;">
+                    If you’ve just used the calculator, we’ll include that rough estimate for you below.
+                </p>
+            </div>
+        </section>
+
+        <!-- ====== CONTACT / QUOTE FORM SECTION ====== -->
+        <section class="services-teaser" style="padding-top:2rem; padding-bottom:2rem;">
+            <div class="container" style="display:grid; gap:2rem; max-width:800px;">
+
+                <!-- FORM CARD -->
+                <div class="service-card" style="box-shadow:var(--shadow-card);">
+                    <div class="service-top" style="margin-bottom:.75rem;">
+                        <div class="service-icon">📋</div>
+                        <h2 style="font-size:1rem; font-weight:600; color:var(--text-dark);">
+                            Your Details
+                        </h2>
+                    </div>
+
+                    <form style="display:grid; gap:1rem;" method="post" action="mailto:info@painterprofife.co.uk"
+                        enctype="text/plain">
+
+                        <!-- NAME -->
+                        <div style="display:grid; gap:.4rem;">
+                            <label for="name" style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                                Name*
+                            </label>
+                            <input id="name" name="name" type="text" required
+                                style="width:100%; font-size:.9rem; padding:.75rem .75rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft);"
+                                placeholder="Jane Smith" />
+                        </div>
+
+                        <!-- PHONE -->
+                        <div style="display:grid; gap:.4rem;">
+                            <label for="phone" style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                                Phone number*
+                            </label>
+                            <input id="phone" name="phone" type="tel" required
+                                style="width:100%; font-size:.9rem; padding:.75rem .75rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft);"
+                                placeholder="07..." />
+                            <p style="font-size:.7rem; color:var(--text-mid); line-height:1.4;">
+                                We’ll call/text to confirm a time.
+                            </p>
+                        </div>
+
+                        <!-- POSTCODE -->
+                        <div style="display:grid; gap:.4rem;">
+                            <label for="postcode" style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                                Postcode*
+                            </label>
+                            <input id="postcode" name="postcode" type="text" required
+                                style="width:100%; font-size:.9rem; padding:.75rem .75rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft); text-transform:uppercase;"
+                                placeholder="KY8..." />
+                            <p style="font-size:.7rem; color:var(--text-mid); line-height:1.4;">
+                                Lets us confirm you’re in our area.
+                            </p>
+                        </div>
+
+                        <!-- WHAT NEEDS DONE -->
+                        <div style="display:grid; gap:.4rem;">
+                            <label for="details" style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                                What needs done?*
+                            </label>
+                            <textarea id="details" name="details" required rows="4"
+                                style="width:100%; font-size:.9rem; line-height:1.4; padding:.75rem .75rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft); resize:vertical;"
+                                placeholder="Example: Living room walls + ceiling. Want Dulux Heritage finish. Low marks and a couple cracks. Hallway also needs freshened."></textarea>
+                            <p style="font-size:.7rem; color:var(--text-mid); line-height:1.4;">
+                                We’ll include prep (masking, filling, sanding, two coats). Woodwork/ceilings can be
+                                added.
+                            </p>
+                        </div>
+
+                        <!-- WHEN -->
+                        <div style="display:grid; gap:.4rem;">
+                            <label for="timing" style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                                When are you hoping to get this done?*
+                            </label>
+                            <select id="timing" name="timing" required
+                                style="width:100%; font-size:.9rem; padding:.75rem .75rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft);">
+                                <option value="" disabled selected>Select one</option>
+                                <option>ASAP / emergency</option>
+                                <option>Within 1-2 weeks</option>
+                                <option>Within the next month</option>
+                                <option>Just getting prices</option>
+                            </select>
+                        </div>
+
+                        <!-- AUTO-FILLED QUOTE SNAPSHOT (hidden inputs we submit) -->
+                        <input type="hidden" id="calc_room" name="calc_room" value="" />
+                        <input type="hidden" id="calc_area" name="calc_area" value="" />
+                        <input type="hidden" id="calc_est_standard" name="calc_est_standard" value="" />
+                        <input type="hidden" id="calc_est_heritage" name="calc_est_heritage" value="" />
+
+                        <!-- SUBMIT -->
+                        <button type="submit" class="btn btn-primary" style="justify-self:start; cursor:pointer;">
+                            Send Request
+                        </button>
+
+                        <p style="font-size:.7rem; color:var(--text-mid); line-height:1.4;">
+                            We don’t spam you. We only use your details to confirm the job.
+                        </p>
+                    </form>
+                </div>
+
+                <!-- INFO / REASSURANCE CARD -->
+                <div class="service-card" style="box-shadow:var(--shadow-card);">
+                    <div class="service-top" style="margin-bottom:.75rem;">
+                        <div class="service-icon">📞</div>
+                        <h2 style="font-size:1rem; font-weight:600; color:var(--text-dark);">
+                            Prefer to talk?
+                        </h2>
+                    </div>
+
+                    <p style="font-size:.9rem; color:var(--text-mid); line-height:1.4; margin-bottom:1rem;">
+                        You can call or email us directly if you’d rather not use the form.
+                    </p>
+
+                    <ul
+                        style="list-style:none; display:grid; gap:.5rem; font-size:.9rem; line-height:1.4; color:var(--text-dark);">
+                        <li>
+                            <strong>Phone:</strong>
+                            <a href="tel:+440000000000"
+                                style="color:var(--text-dark); text-decoration:none; font-weight:500;">
+                                1234 567 890
+                            </a>
+                        </li>
+                        <li>
+                            <strong>Email:</strong>
+                            <a href="mailto:info@painterprofife.co.uk"
+                                style="color:var(--text-dark); text-decoration:none; font-weight:500;">
+                                info@painterprofife.co.uk
+                            </a>
+                        </li>
+                        <li style="font-size:.8rem; color:var(--text-mid); line-height:1.4;">
+                            Evening and weekend slots are available.
+                        </li>
+                    </ul>
+
+                    <hr style="border:none; border-top:1px solid var(--border-soft); margin:1rem 0;" />
+
+                    <div style="display:grid; gap:.5rem; font-size:.8rem; color:var(--text-mid); line-height:1.4;">
+                        <div><strong style="color:var(--text-dark); font-weight:600;">Fast jobs:</strong> nicotine
+                            cover, rental reset, end-of-tenancy.</div>
+                        <div><strong style="color:var(--text-dark); font-weight:600;">Areas covered:</strong> Leven,
+                            Kirkcaldy, Glenrothes, St Andrews.</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ====== CTA STRIP ====== -->
+        <section class="cta-strip">
+            <div class="container cta-inner">
+                <div class="cta-text">
+                    <p class="cta-eyebrow">Need it done fast?</p>
+                    <p class="cta-line">
+                        We do urgent turnaround work for rentals, house sales and handovers.
+                    </p>
+                </div>
+
+                <a class="btn btn-dark" href="basket.html">View Basket</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <span class="brand-main">PainterPro</span>
+                    <span class="brand-sub">Fife</span>
+                </div>
+                <p class="footer-tag">
+                    Clean, reliable painting &amp; decorating across Fife.
+                </p>
+                <p class="footer-small">
+                    Fully insured. Domestic &amp; commercial.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="catalogue.html">Paint Catalogue</a></li>
+                    <li><a href="basket.html">Basket</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Get a quote</h4>
+                <ul>
+                    <li><a href="contact.html">Request a visit</a></li>
+                    <li><a href="tel:+4400000000000">Call 1234 567 890</a></li>
+                    <li><a href="mailto:info@painterprofife.co.uk">info@painterprofife.co.uk</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Areas we cover</h4>
+                <ul>
+                    <li>Leven</li>
+                    <li>Kirkcaldy</li>
+                    <li>Glenrothes</li>
+                    <li>St Andrews</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p class="legal">© PainterPro Fife. All rights reserved.</p>
+                <p class="legal"><a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

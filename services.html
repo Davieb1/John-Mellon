@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Services | PainterPro Fife</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- IMPORTANT: cart.js first so PainterProCart exists, then nav, then services logic -->
+    <script defer src="cart.js"></script>
+    <script defer src="nav.js"></script>
+    <script defer src="estimator.js"></script>
+    <script defer src="services.js"></script>
+    <script defer src="colours.js"></script>
+
+</head>
+
+<body>
+    <!-- ====== GLOBAL HEADER / NAV WITH PREVIEW ====== -->
+    <header class="site-header">
+        <nav class="nav container">
+            <a class="brand" href="index.html">
+                <span class="brand-main">PainterPro</span>
+                <span class="brand-sub">Fife</span>
+            </a>
+
+            <button class="nav-toggle" aria-expanded="false" aria-controls="navlinks">☰</button>
+
+            <ul id="navlinks" class="links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="catalogue.html">Paint Catalogue</a></li>
+                <li><a href="contact.html">Get a Quote</a></li>
+                <li><a href="basket.html">Basket</a></li>
+            </ul>
+
+            <div class="cart-wrapper">
+                <button class="cart-btn" id="cartToggle" aria-label="Open basket preview" type="button">
+                    🧺 <span id="cartCount">0</span>
+                </button>
+
+                <div class="cart-preview" id="cartPreview">
+                    <div class="cart-preview-head">
+                        <div class="cart-preview-title">Your Basket</div>
+                        <button class="cart-close-btn" id="cartCloseBtn" type="button">✕</button>
+                    </div>
+
+                    <div class="cart-preview-body" id="cartPreviewBody">
+                        <div class="cart-preview-empty">Your basket is empty.</div>
+                    </div>
+
+                    <div class="cart-preview-foot">
+                        <div class="cart-preview-total">
+                            <span>Subtotal:</span>
+                            <strong id="cartPreviewSubtotal">£0.00</strong>
+                        </div>
+                        <a class="btn btn-dark cart-preview-link" href="basket.html"
+                            style="width:100%; text-align:center; font-size:.8rem;">
+                            Go to basket →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ====== HERO / INTRO ====== -->
+        <section class="why" style="padding-top:2rem; padding-bottom:2rem;">
+            <div class="container" style="display:grid; gap:1rem; max-width:900px;">
+                <h1 class="section-title" style="font-size:1.5rem; margin-bottom:.25rem;">
+                    Painting &amp; Decorating Services
+                </h1>
+                <p style="font-size:.95rem; color:var(--text-mid); line-height:1.5;">
+                    Tell us what finish you want, how many litres you need, and we’ll build the full system sheet
+                    (prep, fillers, tapes, rollers, tins) and drop it straight into your basket.
+                    Materials only or supply &amp; apply.
+                </p>
+            </div>
+        </section>
+
+        <!-- ====== BRANDS / FINISHES / USES ====== -->
+        <section class="services-teaser" style="padding-top:2rem; padding-bottom:2rem;">
+            <div class="container" style="display:grid; gap:2rem; max-width:1100px;">
+
+                <!-- Brands -->
+                <div class="service-card" style="box-shadow:var(--shadow-card);">
+                    <div class="service-top" style="margin-bottom:1rem;">
+                        <div class="service-icon">🏷️</div>
+                        <h2 style="font-size:1rem; font-weight:600; color:var(--text-dark);">
+                            Brands we can supply
+                        </h2>
+                    </div>
+
+                    <div style="display:flex; flex-wrap:wrap; gap:.5rem; font-size:.8rem; line-height:1.4;">
+                        <span class="badge">Dulux Heritage</span>
+                        <span class="badge">Dulux Trade</span>
+                        <span class="badge">Johnstone’s Trade</span>
+                        <span class="badge">Crown Trade</span>
+                        <span class="badge">Leyland Trade</span>
+                        <span class="badge">Zinsser (stain block / adhesion)</span>
+                        <span class="badge">Toupret (fillers)</span>
+                        <span class="badge">Everbuild / Decorators Caulk</span>
+                        <span class="badge">Hamilton &amp; Purdy (rollers / tape / sundries)</span>
+                    </div>
+                </div>
+
+                <!-- Finishes -->
+                <div class="service-card" style="box-shadow:var(--shadow-card);">
+                    <div class="service-top" style="margin-bottom:1rem;">
+                        <div class="service-icon">🎨</div>
+                        <h2 style="font-size:1rem; font-weight:600; color:var(--text-dark);">
+                            Finishes available
+                        </h2>
+                    </div>
+
+                    <div style="display:flex; flex-wrap:wrap; gap:.5rem; font-size:.8rem; line-height:1.4;">
+                        <span class="badge">Scrubbable Matt</span>
+                        <span class="badge">Dulux Heritage Velvet Matt</span>
+                        <span class="badge">Kitchen &amp; Bathroom Moisture Resistant</span>
+                        <span class="badge">Low-Yellowing Eggshell (Woodwork)</span>
+                        <span class="badge">Satinwood / Gloss (Trim)</span>
+                        <span class="badge">Masonry / Exterior Smooth</span>
+                        <span class="badge">Stain Block / Nicotine Sealer</span>
+                    </div>
+                </div>
+
+                <!-- Uses -->
+                <div class="service-card" style="box-shadow:var(--shadow-card);">
+                    <div class="service-top" style="margin-bottom:1rem;">
+                        <div class="service-icon">🏠</div>
+                        <h2 style="font-size:1rem; font-weight:600; color:var(--text-dark);">
+                            Typical uses
+                        </h2>
+                    </div>
+
+                    <div style="display:flex; flex-wrap:wrap; gap:.5rem; font-size:.8rem; line-height:1.4;">
+                        <span class="badge">Lounge / Bedroom refresh</span>
+                        <span class="badge">Hall / Stairs / Landing wipeable walls</span>
+                        <span class="badge">Kitchen &amp; Bathroom steam areas</span>
+                        <span class="badge">Let-ready / end of tenancy</span>
+                        <span class="badge">Nicotine / leak stain blocking</span>
+                        <span class="badge">Exterior masonry weatherproofing</span>
+                        <span class="badge">Taping &amp; jointing (new build)</span>
+                        <span class="badge">Shops / commercial units</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ====== QUICK ROOM PAINT ESTIMATE ====== -->
+        <section class="why" style="padding-top:2rem; padding-bottom:2rem;">
+            <div class="container" style="max-width:1100px; display:grid; gap:1.5rem;">
+
+                <div style="
+            border:1px solid var(--border-soft);
+            border-radius:var(--radius-card,1rem);
+            background:#fff;
+            box-shadow:var(--shadow-card);
+            padding:1rem 1rem 1.5rem;
+            display:grid;
+            gap:1rem;
+            font-size:.9rem;
+            line-height:1.4;
+        ">
+
+                    <!-- header -->
+                    <div style="display:flex; gap:.75rem; align-items:flex-start;">
+                        <div style="
+                    width:2rem;
+                    height:2rem;
+                    border-radius:.5rem;
+                    background:#f2f2f2;
+                    box-shadow:var(--shadow-soft);
+                    border:1px solid var(--border-soft);
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    font-size:1rem;
+                ">🧪</div>
+
+                        <div style="flex:1;">
+                            <div style="font-size:1rem; font-weight:600; color:var(--text-dark);">
+                                Quick Room Paint Estimate
+                            </div>
+                            <div style="font-size:.8rem; color:var(--text-mid); line-height:1.4;">
+                                Enter rough room size. We’ll estimate litres needed and material cost.
+                                This is materials only (paint). Labour can be added if you want us to supply &amp;
+                                apply.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- form grid -->
+                    <div style="display:grid; gap:1rem; max-width:700px;">
+                        <!-- room type -->
+                        <div style="display:grid; gap:.4rem;">
+                            <label for="roomType" style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                                Room type
+                            </label>
+                            <select id="roomType" style="
+                        width:100%;
+                        font-size:.9rem;
+                        padding:.8rem .8rem;
+                        border-radius:var(--radius-btn);
+                        border:1px solid var(--border-soft);
+                        background:#fff;
+                        box-shadow:var(--shadow-soft);
+                    ">
+                                <option value="standard">Living room / Bedroom</option>
+                                <option value="kitchenbath">Kitchen / Bathroom (steam resistant)</option>
+                                <option value="rentalreset">Rental reset / end of tenancy</option>
+                            </select>
+                        </div>
+
+                        <!-- wall A -->
+                        <div style="display:grid; gap:.4rem;">
+                            <label for="wallA" style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                                Wall length A (metres)
+                            </label>
+                            <input id="wallA" type="number" min="1" step="0.1" value="4" style="
+                        width:100%;
+                        font-size:.9rem;
+                        padding:.8rem .8rem;
+                        border-radius:var(--radius-btn);
+                        border:1px solid var(--border-soft);
+                        background:#fff;
+                        box-shadow:var(--shadow-soft);
+                    ">
+                        </div>
+
+                        <!-- wall B -->
+                        <div style="display:grid; gap:.4rem;">
+                            <label for="wallB" style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                                Wall length B (metres)
+                            </label>
+                            <input id="wallB" type="number" min="1" step="0.1" value="4" style="
+                        width:100%;
+                        font-size:.9rem;
+                        padding:.8rem .8rem;
+                        border-radius:var(--radius-btn);
+                        border:1px solid var(--border-soft);
+                        background:#fff;
+                        box-shadow:var(--shadow-soft);
+                    ">
+                        </div>
+
+                        <!-- height -->
+                        <div style="display:grid; gap:.4rem;">
+                            <label for="heightM" style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                                Ceiling height (metres)
+                            </label>
+                            <input id="heightM" type="number" min="1" step="0.01" value="2.65" style="
+                        width:100%;
+                        font-size:.9rem;
+                        padding:.8rem .8rem;
+                        border-radius:var(--radius-btn);
+                        border:1px solid var(--border-soft);
+                        background:#fff;
+                        box-shadow:var(--shadow-soft);
+                    ">
+                        </div>
+
+                        <!-- button -->
+                        <div>
+                            <button id="calcEstimateBtn" class="btn btn-primary" type="button" style="
+                        font-size:.9rem;
+                        line-height:1.2;
+                        cursor:pointer;
+                        padding:.8rem 1rem;
+                    ">
+                                Calculate estimate
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- results -->
+                    <div id="estimateResultBlock" style="
+                display:none;
+                border-top:1px solid var(--border-soft);
+                padding-top:1rem;
+                margin-top:1rem;
+                font-size:.85rem;
+                line-height:1.4;
+                color:var(--text-mid);
+            ">
+                        <div style="color:var(--text-dark); font-weight:600; margin-bottom:.5rem;">
+                            Estimated materials for this room
+                        </div>
+
+                        <div id="litreBreakdownText" style="margin-bottom:.5rem;">
+                            <!-- e.g. "Approx 7.5L total across 1x 5L + 1x 2.5L" -->
+                        </div>
+
+                        <div id="systemSheetList" style="margin-bottom:1rem;">
+                            <!-- we’ll inject bullet list of tins + filler / caulk / tape etc -->
+                        </div>
+
+                        <div style="font-size:.8rem; color:var(--text-mid); margin-bottom:.75rem;">
+                            This is based on 2 coats on all four walls. Ceilings/woodwork not included.
+                        </div>
+
+                        <button id="addEstimateToBasketBtn" class="btn btn-dark" type="button" style="
+                    font-size:.8rem;
+                    line-height:1.2;
+                    cursor:pointer;
+                    width:max-content;
+                ">
+                            Add full system to basket
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ====== INTERIOR / EXTERIOR / RENTAL / TAPING ====== -->
+        <section class="why" style="padding-top:2rem; padding-bottom:2rem;">
+            <div class="container" style="display:grid; gap:1.5rem; max-width:1100px;">
+
+                <!-- INTERIOR SYSTEM -->
+                <div class="service-card" style="box-shadow:var(--shadow-card);" data-service="interior">
+                    <div class="service-top" style="margin-bottom:1rem;">
+                        <div class="service-icon">🛋️</div>
+                        <div>
+                            <h2 style="font-size:1rem; font-weight:600; color:var(--text-dark);">
+                                Interior Walls &amp; Ceilings
+                            </h2>
+                            <div style="font-size:.8rem; color:var(--text-mid); line-height:1.4;">
+                                Scrubbable Matt / Dulux Heritage Velvet Matt / Low-Yellowing Eggshell for trim
+                            </div>
+                        </div>
+                    </div>
+
+                    <p style="font-size:.9rem; color:var(--text-mid); line-height:1.4;">
+                        High-traffic rooms, stairs &amp; landings, bedrooms, lounges. We prep, fill, caulk edges, and
+                        finish with 2 coats.
+                    </p>
+
+                    <div class="system-block"
+                        style="margin-top:1rem; border:1px solid var(--border-soft); border-radius:var(--radius-btn); padding:1rem; background:#fff; box-shadow:var(--shadow-soft);">
+
+                        <!-- litres -->
+                        <div style="display:grid; gap:.4rem; margin-bottom:1rem;">
+                            <label for="litresInterior"
+                                style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                                How many litres do you think you'll need?
+                            </label>
+                            <input id="litresInterior" type="number" step="0.5" min="1" placeholder="e.g. 7"
+                                style="width:8rem; font-size:.9rem; padding:.6rem .6rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft);" />
+                            <p style="font-size:.7rem; color:var(--text-mid); line-height:1.4;">
+                                We'll split that across 10L / 5L / 2.5L / 1L tins.
+                            </p>
+                        </div>
+
+                        <!-- finish -->
+                        <div style="display:grid; gap:.4rem; margin-bottom:1rem;">
+                            <label for="finishInterior"
+                                style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                                Finish / Range
+                            </label>
+                            <select id="finishInterior"
+                                style="width:100%; max-width:18rem; font-size:.9rem; padding:.6rem .6rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft);">
+                                <option value="scrubbable">Scrubbable Matt (wipeable, family durable)</option>
+                                <option value="heritage">Dulux Heritage Velvet Matt (luxury soft-touch)</option>
+                                <option value="eggshell">Low-Yellowing Eggshell (woodwork / trim)</option>
+                            </select>
+                        </div>
+
+                        <!-- preview -->
+                        <div style="display:grid; gap:.5rem; font-size:.8rem; line-height:1.4; margin-bottom:1rem;">
+                            <div>
+                                <strong style="color:var(--text-dark); font-weight:600;">Tin breakdown:</strong>
+                                <span id="interiorTinBreakdown">-</span>
+                            </div>
+
+                            <div>
+                                <strong style="color:var(--text-dark); font-weight:600;">System Sheet (what you'll
+                                    get):</strong>
+                                <div id="interiorSystemSheet" style="color:var(--text-mid);"></div>
+                            </div>
+                        </div>
+
+                        <!-- button -->
+                        <button class="btn btn-primary" id="addInteriorSystem"
+                            style="width:max-content; font-size:.8rem; line-height:1.2; cursor:pointer;">
+                            Add full system sheet to basket
+                        </button>
+                    </div>
+                </div>
+
+                <!-- EXTERIOR / MASONRY SYSTEM -->
+                <div class="service-card" style="box-shadow:var(--shadow-card);" data-service="exterior">
+                    <div class="service-top" style="margin-bottom:1rem;">
+                        <div class="service-icon">🏡</div>
+                        <div>
+                            <h2 style="font-size:1rem; font-weight:600; color:var(--text-dark);">
+                                Exterior &amp; Masonry
+                            </h2>
+                            <div style="font-size:.8rem; color:var(--text-mid); line-height:1.4;">
+                                Smooth masonry coatings • Weatherproof exterior finishes
+                            </div>
+                        </div>
+                    </div>
+
+                    <p style="font-size:.9rem; color:var(--text-mid); line-height:1.4;">
+                        Masonry walls, shopfronts, sills, exterior trims. Weather-resistant and flexible.
+                    </p>
+
+                    <div class="system-block"
+                        style="margin-top:1rem; border:1px solid var(--border-soft); border-radius:var(--radius-btn); padding:1rem; background:#fff; box-shadow:var(--shadow-soft);">
+
+                        <div style="display:grid; gap:.4rem; margin-bottom:1rem;">
+                            <label for="litresExterior"
+                                style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                                How many litres for outside?
+                            </label>
+                            <input id="litresExterior" type="number" step="0.5" min="1" placeholder="e.g. 12"
+                                style="width:8rem; font-size:.9rem; padding:.6rem .6rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft);" />
+                            <p style="font-size:.7rem; color:var(--text-mid); line-height:1.4;">
+                                We’ll break that into tins.
+                            </p>
+                        </div>
+
+                        <div style="display:grid; gap:.4rem; margin-bottom:1rem;">
+                            <label for="finishExterior"
+                                style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                                Finish / Range
+                            </label>
+                            <select id="finishExterior"
+                                style="width:100%; max-width:18rem; font-size:.9rem; padding:.6rem .6rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft);">
+                                <option value="masonry">Weatherproof Masonry Paint (Smooth)</option>
+                                <option value="trim_ext">Exterior Satin / Gloss for Doors &amp; Trims</option>
+                            </select>
+                        </div>
+
+                        <div style="display:grid; gap:.5rem; font-size:.8rem; line-height:1.4; margin-bottom:1rem;">
+                            <div>
+                                <strong style="color:var(--text-dark); font-weight:600;">Tin breakdown:</strong>
+                                <span id="exteriorTinBreakdown">-</span>
+                            </div>
+
+                            <div>
+                                <strong style="color:var(--text-dark); font-weight:600;">System Sheet:</strong>
+                                <div id="exteriorSystemSheet" style="color:var(--text-mid);"></div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" id="addExteriorSystem"
+                            style="width:max-content; font-size:.8rem; line-height:1.2; cursor:pointer;">
+                            Add full system sheet to basket
+                        </button>
+                    </div>
+                </div>
+
+                <!-- RENTAL / COMMERCIAL SYSTEM -->
+                <div class="service-card" style="box-shadow:var(--shadow-card);" data-service="rental">
+                    <div class="service-top" style="margin-bottom:1rem;">
+                        <div class="service-icon">🏢</div>
+                        <div>
+                            <h2 style="font-size:1rem; font-weight:600; color:var(--text-dark);">
+                                Let-Ready / Commercial Turnaround
+                            </h2>
+                            <div style="font-size:.8rem; color:var(--text-mid); line-height:1.4;">
+                                End-of-tenancy reset • Nicotine block • Leak stain cover
+                            </div>
+                        </div>
+                    </div>
+
+                    <p style="font-size:.9rem; color:var(--text-mid); line-height:1.4;">
+                        Rapid neutral repaint, stain block, touch-up filler, floors and kitchens protected.
+                    </p>
+
+                    <div class="system-block"
+                        style="margin-top:1rem; border:1px solid var(--border-soft); border-radius:var(--radius-btn); padding:1rem; background:#fff; box-shadow:var(--shadow-soft);">
+
+                        <div style="display:grid; gap:.4rem; margin-bottom:1rem;">
+                            <label for="litresRental" style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                                Litres to cover inside this unit/flat?
+                            </label>
+                            <input id="litresRental" type="number" step="0.5" min="1" placeholder="e.g. 15"
+                                style="width:8rem; font-size:.9rem; padding:.6rem .6rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft);" />
+                            <p style="font-size:.7rem; color:var(--text-mid); line-height:1.4;">
+                                We’ll build the tins for you.
+                            </p>
+                        </div>
+
+                        <div style="display:grid; gap:.4rem; margin-bottom:1rem;">
+                            <label for="finishRental" style="font-size:.8rem; font-weight:600; color:var(--text-dark);">
+                                System Type
+                            </label>
+                            <select id="finishRental"
+                                style="width:100%; max-width:18rem; font-size:.9rem; padding:.6rem .6rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft);">
+                                <option value="rental">High-Cover Trade Matt (rental neutral)</option>
+                                <option value="stainblock">Nicotine / Leak Stain Block + Cover Coat</option>
+                            </select>
+                        </div>
+
+                        <div style="display:grid; gap:.5rem; font-size:.8rem; line-height:1.4; margin-bottom:1rem;">
+                            <div>
+                                <strong style="color:var(--text-dark); font-weight:600;">Tin breakdown:</strong>
+                                <span id="rentalTinBreakdown">-</span>
+                            </div>
+
+                            <div>
+                                <strong style="color:var(--text-dark); font-weight:600;">System Sheet:</strong>
+                                <div id="rentalSystemSheet" style="color:var(--text-mid);"></div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" id="addRentalSystem"
+                            style="width:max-content; font-size:.8rem; line-height:1.2; cursor:pointer;">
+                            Add full system sheet to basket
+                        </button>
+                    </div>
+                </div>
+
+                <!-- TAPING & JOINTING -->
+                <div class="service-card" style="box-shadow:var(--shadow-card);" data-service="taping">
+                    <div class="service-top" style="margin-bottom:1rem;">
+                        <div class="service-icon">🧱</div>
+                        <div>
+                            <h2 style="font-size:1rem; font-weight:600; color:var(--text-dark);">
+                                Taping &amp; Jointing Kit
+                            </h2>
+                            <div style="font-size:.8rem; color:var(--text-mid); line-height:1.4;">
+                                Plasterboard joints • Internal corners • Sand to paint-ready
+                            </div>
+                        </div>
+                    </div>
+
+                    <p style="font-size:.9rem; color:var(--text-mid); line-height:1.4;">
+                        Everything you need to tape, joint, fill and sand new boards to a paintable finish.
+                    </p>
+
+                    <div class="system-block"
+                        style="margin-top:1rem; border:1px solid var(--border-soft); border-radius:var(--radius-btn); padding:1rem; background:#fff; box-shadow:var(--shadow-soft);">
+
+                        <div style="display:grid; gap:.5rem; font-size:.8rem; line-height:1.4; margin-bottom:1rem;">
+                            <div>
+                                <strong style="color:var(--text-dark); font-weight:600;">System Sheet (what you'll
+                                    get):</strong>
+                                <div id="tapingSystemSheet" style="color:var(--text-mid);"></div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" id="addTapingSystem"
+                            style="width:max-content; font-size:.8rem; line-height:1.2; cursor:pointer;">
+                            Add taping &amp; jointing kit to basket
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ====== CTA STRIP ====== -->
+        <section class="cta-strip">
+            <div class="container cta-inner">
+                <div class="cta-text">
+                    <p class="cta-eyebrow">Need us to just handle it?</p>
+                    <p class="cta-line">
+                        We can supply all kit and come do the full prep and finish.
+                        Ask for "Supply &amp; apply it for me" in the basket.
+                    </p>
+                </div>
+                <a class="btn btn-dark" href="contact.html">Book a visit</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <span class="brand-main">PainterPro</span>
+                    <span class="brand-sub">Fife</span>
+                </div>
+                <p class="footer-tag">
+                    Clean, reliable painting &amp; decorating across Fife.
+                </p>
+                <p class="footer-small">
+                    Fully insured. Domestic &amp; commercial.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="catalogue.html">Paint Catalogue</a></li>
+                    <li><a href="basket.html">Basket</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Get a quote</h4>
+                <ul>
+                    <li><a href="contact.html">Request a visit</a></li>
+                    <li><a href="tel:+440000000000">Call 1234 567 890</a></li>
+                    <li><a href="mailto:info@painterprofife.co.uk">info@painterprofife.co.uk</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Areas we cover</h4>
+                <ul>
+                    <li>Leven</li>
+                    <li>Kirkcaldy</li>
+                    <li>Glenrothes</li>
+                    <li>St Andrews</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p class="legal">© PainterPro Fife. All rights reserved.</p>
+                <p class="legal"><a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

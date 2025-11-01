@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Paint Catalogue | PainterPro Fife</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Order matters: cart first, then nav, then page logic -->
+    <script defer src="cart.js"></script>
+    <script defer src="nav.js"></script>
+    <script defer src="catalogue.js"></script>
+    <script defer src="colour.js"></script>
+</head>
+
+<body>
+    <!-- ====== GLOBAL HEADER / NAV WITH PREVIEW ====== -->
+    <header class="site-header">
+        <nav class="nav container">
+            <!-- Brand -->
+            <a class="brand" href="index.html">
+                <span class="brand-main">Prime Decorating Supplies</span>
+                <span class="brand-sub">Fife</span>
+            </a>
+
+            <!-- Mobile nav toggle -->
+            <button class="nav-toggle" aria-expanded="false" aria-controls="navlinks">
+                ☰
+            </button>
+
+            <!-- Nav links -->
+            <ul id="navlinks" class="links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="catalogue.html" class="active">Paint Catalogue</a></li>
+                <li><a href="contact.html">Get a Quote</a></li>
+                <li><a href="basket.html">Basket</a></li>
+            </ul>
+
+            <!-- Cart wrapper -->
+            <div class="cart-wrapper">
+                <button class="cart-btn" id="cartToggle" aria-label="Open basket preview" type="button">
+                    🧺 <span id="cartCount">0</span>
+                </button>
+
+                <!-- Cart preview dropdown -->
+                <div class="cart-preview" id="cartPreview">
+                    <div class="cart-preview-head">
+                        <div class="cart-preview-title">Your Basket</div>
+                        <button class="cart-close-btn" id="cartCloseBtn" type="button">✕</button>
+                    </div>
+
+                    <div class="cart-preview-body" id="cartPreviewBody">
+                        <div class="cart-preview-empty">Your basket is empty.</div>
+                    </div>
+
+                    <div class="cart-preview-foot">
+                        <div class="cart-preview-total">
+                            <span>Subtotal:</span>
+                            <strong id="cartPreviewSubtotal">£0.00</strong>
+                        </div>
+                        <a class="btn btn-dark cart-preview-link" href="basket.html"
+                            style="width:100%; text-align:center; font-size:.8rem;">
+                            Go to basket →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ====== PAGE HEADER / INTRO ====== -->
+        <section class="why" style="padding-top:2rem; padding-bottom:2rem;">
+            <div class="container" style="display:grid; gap:1rem; max-width:1100px;">
+                <h1 class="section-title" style="font-size:1.5rem; margin-bottom:.25rem;">
+                    Trade Paint Catalogue
+                </h1>
+
+                <p style="max-width:70ch; font-size:.95rem; color:var(--text-mid); line-height:1.5;">
+                    Pick a colour, see how we’d spec it, and add it straight to your basket. Our tins are trade-grade
+                    with better coverage, scrub resistance and depth than typical DIY-store paint.
+                </p>
+
+                <div style="display:flex; flex-wrap:wrap; gap:.5rem; font-size:.7rem; line-height:1.4;">
+                    <span
+                        style="background:#000; color:#fff; padding:.4rem .6rem; border-radius:var(--radius-btn); font-weight:600; box-shadow:var(--shadow-soft);">
+                        Dulux Heritage Velvet Matt
+                    </span>
+                    <span
+                        style="background:#fff; color:#000; padding:.4rem .6rem; border-radius:var(--radius-btn); font-weight:600; border:1px solid var(--border-soft); box-shadow:var(--shadow-soft);">
+                        Scrubbable Matt
+                    </span>
+                    <span
+                        style="background:#fff; color:#000; padding:.4rem .6rem; border-radius:var(--radius-btn); font-weight:600; border:1px solid var(--border-soft); box-shadow:var(--shadow-soft);">
+                        Kitchen &amp; Bathroom Steam Resistant
+                    </span>
+                    <span
+                        style="background:#fff; color:#000; padding:.4rem .6rem; border-radius:var(--radius-btn); font-weight:600; border:1px solid var(--border-soft); box-shadow:var(--shadow-soft);">
+                        Masonry / Exterior Smooth
+                    </span>
+                    <span
+                        style="background:#fff; color:#000; padding:.4rem .6rem; border-radius:var(--radius-btn); font-weight:600; border:1px solid var(--border-soft); box-shadow:var(--shadow-soft);">
+                        Low-Yellowing Eggshell (Woodwork)
+                    </span>
+                </div>
+
+                <p style="font-size:.8rem; color:var(--text-mid); line-height:1.4;">
+                    We can deliver materials only, or supply &amp; apply it for you. Add what you want to the basket,
+                    then confirm in <strong>Basket → Send Order</strong>.
+                </p>
+            </div>
+        </section>
+
+        <!-- ====== FEATURED RANGES / 4-TONE SNAPSHOTS ====== -->
+        <!-- Dulux Heritage + Scrubbable Matt with Pale / Mid / Deep / White swatches -->
+        <section class="services-teaser" style="padding-top:2rem; padding-bottom:2rem;">
+            <div class="container" style="display:grid; gap:2rem; max-width:1100px;">
+
+                <!-- DULUX HERITAGE -->
+                <div class="service-card" style="box-shadow:var(--shadow-card);">
+                    <div class="service-top" style="margin-bottom:1rem; align-items:flex-start;">
+                        <div class="service-icon"
+                            style="width:2rem; height:2rem; border-radius:.5rem; box-shadow:var(--shadow-soft); background:#d8d2c4;">
+                        </div>
+                        <div style="flex:1;">
+                            <h2 style="font-size:1rem; font-weight:600; color:var(--text-dark);">
+                                Dulux Heritage Velvet Matt
+                            </h2>
+                            <div style="font-size:.8rem; color:var(--text-mid); line-height:1.4;">
+                                Luxury soft-touch matt. High pigmentation, wipeable. Living rooms / bedrooms / feature
+                                walls.
+                            </div>
+                        </div>
+                        <div class="badge" style="display:inline-block;">Premium Range</div>
+                    </div>
+
+                    <!-- 4-tone snapshot -->
+                    <div class="tone-grid"
+                        style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem;">
+
+                        <!-- Pale -->
+                        <div class="tone-card">
+                            <div class="tone-swatch"
+                                style="width:100%; height:3rem; border-radius:.5rem; box-shadow:var(--shadow-soft); background:#f5efe2; border:1px solid #ddd;">
+                            </div>
+                            <div style="margin-top:.5rem; font-size:.8rem; line-height:1.4;">
+                                <div style="font-weight:600; color:var(--text-dark);">Warm Linen</div>
+                                <div style="color:var(--text-mid);">
+                                    Pale neutral. Full-room safe for lounges/bedrooms.
+                                </div>
+                                <div style="color:var(--text-mid); font-size:.7rem;">
+                                    Use on: walls &amp; ceilings
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mid -->
+                        <div class="tone-card">
+                            <div class="tone-swatch"
+                                style="width:100%; height:3rem; border-radius:.5rem; box-shadow:var(--shadow-soft); background:#d8d2c4;">
+                            </div>
+                            <div style="margin-top:.5rem; font-size:.8rem; line-height:1.4;">
+                                <div style="font-weight:600; color:var(--text-dark);">Heritage Stone</div>
+                                <div style="color:var(--text-mid);">
+                                    Calm beige/greige. Bedrooms, living rooms.
+                                </div>
+                                <div style="color:var(--text-mid); font-size:.7rem;">
+                                    Use on: walls &amp; ceilings
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Deep -->
+                        <div class="tone-card">
+                            <div class="tone-swatch"
+                                style="width:100%; height:3rem; border-radius:.5rem; box-shadow:var(--shadow-soft); background:#cbd3da;">
+                            </div>
+                            <div style="margin-top:.5rem; font-size:.8rem; line-height:1.4;">
+                                <div style="font-weight:600; color:var(--text-dark);">Coastal Grey</div>
+                                <div style="color:var(--text-mid);">
+                                    Modern cool grey. Hall / stairs / landing.
+                                </div>
+                                <div style="color:var(--text-mid); font-size:.7rem;">
+                                    Use on: walls, bannisters (keyed)
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- White -->
+                        <div class="tone-card">
+                            <div class="tone-swatch"
+                                style="width:100%; height:3rem; border-radius:.5rem; box-shadow:var(--shadow-soft); background:#ffffff; border:1px solid #ccc;">
+                            </div>
+                            <div style="margin-top:.5rem; font-size:.8rem; line-height:1.4;">
+                                <div style="font-weight:600; color:var(--text-dark);">Chalk White</div>
+                                <div style="color:var(--text-mid);">
+                                    Clean white with no harsh blue. Ceilings / trims.
+                                </div>
+                                <div style="color:var(--text-mid); font-size:.7rem;">
+                                    Use on: ceilings, skirting
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:1rem;">
+                        <button class="btn btn-primary openPaletteBtn" data-range="heritage"
+                            style="cursor:pointer; font-size:.8rem; line-height:1.2;">
+                            View full Heritage palette →
+                        </button>
+
+                    </div>
+                </div>
+
+                <!-- SCRUBBABLE MATT -->
+                <div class="service-card" style="box-shadow:var(--shadow-card);">
+                    <div class="service-top" style="margin-bottom:1rem; align-items:flex-start;">
+                        <div class="service-icon"
+                            style="width:2rem; height:2rem; border-radius:.5rem; box-shadow:var(--shadow-soft); background:#dcdcdc;">
+                        </div>
+                        <div style="flex:1;">
+                            <h2 style="font-size:1rem; font-weight:600; color:var(--text-dark);">
+                                Scrubbable Matt
+                            </h2>
+                            <div style="font-size:.8rem; color:var(--text-mid); line-height:1.4;">
+                                Wipe-clean durable matt. High-traffic / family homes / HSL walls.
+                            </div>
+                        </div>
+                        <div class="badge" style="display:inline-block;">Durable</div>
+                    </div>
+
+                    <!-- 4-tone snapshot -->
+                    <div class="tone-grid"
+                        style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem;">
+
+                        <!-- Pale -->
+                        <div class="tone-card">
+                            <div class="tone-swatch"
+                                style="width:100%; height:3rem; border-radius:.5rem; background:#f2f2f2; border:1px solid #ccc; box-shadow:var(--shadow-soft);">
+                            </div>
+                            <div style="margin-top:.5rem; font-size:.8rem; line-height:1.4;">
+                                <div style="font-weight:600; color:var(--text-dark);">Soft Cotton</div>
+                                <div style="color:var(--text-mid);">
+                                    Whole-room light neutral. Family safe.
+                                </div>
+                                <div style="color:var(--text-mid); font-size:.7rem;">
+                                    Use on: walls &amp; ceilings
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mid -->
+                        <div class="tone-card">
+                            <div class="tone-swatch"
+                                style="width:100%; height:3rem; border-radius:.5rem; background:#cccccc; box-shadow:var(--shadow-soft);">
+                            </div>
+                            <div style="margin-top:.5rem; font-size:.8rem;">
+                                <div style="font-weight:600; color:var(--text-dark);">Urban Grey</div>
+                                <div style="color:var(--text-mid);">
+                                    Mid grey. Great for HSL / bannisters.
+                                </div>
+                                <div style="color:var(--text-mid); font-size:.7rem;">
+                                    Use on: walls, railing (keyed)
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Deep -->
+                        <div class="tone-card">
+                            <div class="tone-swatch"
+                                style="width:100%; height:3rem; border-radius:.5rem; background:#555555; box-shadow:var(--shadow-soft);">
+                            </div>
+                            <div style="margin-top:.5rem; font-size:.8rem;">
+                                <div style="font-weight:600; color:var(--text-dark);">Graphite Smoke</div>
+                                <div style="color:var(--text-mid);">
+                                    Deep accent / media wall.
+                                </div>
+                                <div style="color:var(--text-mid); font-size:.7rem;">
+                                    Use on: feature wall
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- White -->
+                        <div class="tone-card">
+                            <div class="tone-swatch"
+                                style="width:100%; height:3rem; border-radius:.5rem; background:#ffffff; border:1px solid #ccc; box-shadow:var(--shadow-soft);">
+                            </div>
+                            <div style="margin-top:.5rem; font-size:.8rem;">
+                                <div style="font-weight:600; color:var(--text-dark);">Trade White</div>
+                                <div style="color:var(--text-mid);">
+                                    Ceilings / fast rental reset.
+                                </div>
+                                <div style="color:var(--text-mid); font-size:.7rem;">
+                                    Use on: ceilings / touch-up
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:1rem;">
+                        <button class="btn btn-primary openPaletteBtn" data-range="scrubbable"
+                            style="cursor:pointer; font-size:.8rem; line-height:1.2;">
+                            View full Scrubbable colours →
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ====== MODAL FOR FULL PALETTE (Heritage / Scrubbable) ====== -->
+        <div id="colourModal"
+            style="position:fixed; inset:0; background:rgba(0,0,0,.5); display:none; align-items:center; justify-content:center; padding:1rem; z-index:9999;">
+            <div
+                style="background:#fff; border-radius:var(--radius-card,1rem); max-width:600px; width:100%; box-shadow:var(--shadow-card); max-height:90vh; overflow:auto; position:relative;">
+
+                <button id="closeColourModal"
+                    style="position:absolute; top:.5rem; right:.5rem; background:#000; color:#fff; border:none; border-radius:var(--radius-btn); font-size:.8rem; line-height:1; padding:.4rem .5rem; cursor:pointer;">
+                    ✕
+                </button>
+
+                <div style="padding:1rem 1rem 1.5rem 1rem; display:grid; gap:1rem;">
+                    <div>
+                        <div id="modalRangeName" style="font-size:1rem; font-weight:600; color:var(--text-dark);">
+                            <!-- injected -->
+                        </div>
+                        <div id="modalRangeNote" style="font-size:.8rem; color:var(--text-mid); line-height:1.4;">
+                            <!-- injected -->
+                        </div>
+                    </div>
+
+                    <!-- COLOUR LIST -->
+                    <div id="modalColours"
+                        style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem;">
+                        <!-- injected swatches -->
+                    </div>
+
+                    <div style="font-size:.7rem; color:var(--text-mid); line-height:1.4;">
+                        Add any colour to your estimate. We’ll drop a 2.5L tin of that finish in your basket.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== OTHER POPULAR FINISHES ====== -->
+        <section class="why" style="padding-top:2rem; padding-bottom:2rem;">
+            <div class="container" style="display:grid; gap:1.5rem; max-width:1100px;">
+                <h2 class="section-title" style="margin-bottom:.5rem;">
+                    Other Popular Finishes
+                </h2>
+
+                <!-- Three highlight tiles -->
+                <div class="why-grid"
+                    style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem;">
+
+                    <!-- Kitchen & Bathroom -->
+                    <div class="why-card" style="box-shadow:var(--shadow-card);">
+                        <h3 style="font-size:1rem; font-weight:600; color:var(--text-dark); margin-bottom:.5rem;">
+                            Kitchen &amp; Bathroom (Steam Resistant)
+                        </h3>
+                        <p style="font-size:.9rem; color:var(--text-mid); line-height:1.4;">
+                            Moisture-resistant, wipe clean. Helps resist mould spotting.
+                            Ideal for kitchens, utilities and bathrooms.
+                        </p>
+
+                        <div style="display:flex; gap:.5rem; margin-top:.75rem; flex-wrap:wrap;">
+                            <div style="flex:1 1 30%; min-width:5rem;">
+                                <div
+                                    style="height:2rem; border-radius:.4rem; background:#e8f1f3; box-shadow:var(--shadow-soft);">
+                                </div>
+                                <div style="font-size:.7rem; margin-top:.25rem;">Coastal Mist</div>
+                            </div>
+                            <div style="flex:1 1 30%; min-width:5rem;">
+                                <div
+                                    style="height:2rem; border-radius:.4rem; background:#ffffff; border:1px solid #ccc; box-shadow:var(--shadow-soft);">
+                                </div>
+                                <div style="font-size:.7rem; margin-top:.25rem;">Tile White</div>
+                            </div>
+                            <div style="flex:1 1 30%; min-width:5rem;">
+                                <div
+                                    style="height:2rem; border-radius:.4rem; background:#d4d8cf; box-shadow:var(--shadow-soft);">
+                                </div>
+                                <div style="font-size:.7rem; margin-top:.25rem;">Steam Grey</div>
+                            </div>
+                        </div>
+
+                        <p style="font-size:.7rem; color:var(--text-mid); line-height:1.4; margin-top:.5rem;">
+                            Use on: kitchen/bathroom walls &amp; ceilings. Not for bare metal/wood.
+                        </p>
+                    </div>
+
+                    <!-- Masonry / Exterior Smooth -->
+                    <div class="why-card" style="box-shadow:var(--shadow-card);">
+                        <h3 style="font-size:1rem; font-weight:600; color:var(--text-dark); margin-bottom:.5rem;">
+                            Masonry / Exterior Smooth
+                        </h3>
+                        <p style="font-size:.9rem; color:var(--text-mid); line-height:1.4;">
+                            Flexible, weather-resistant coating for exterior render, brick, block and sills.
+                        </p>
+
+                        <div style="display:flex; gap:.5rem; margin-top:.75rem; flex-wrap:wrap;">
+                            <div style="flex:1 1 30%; min-width:5rem;">
+                                <div
+                                    style="height:2rem; border-radius:.4rem; background:#faf9f0; border:1px solid #ddd; box-shadow:var(--shadow-soft);">
+                                </div>
+                                <div style="font-size:.7rem; margin-top:.25rem;">Chalk Render</div>
+                            </div>
+                            <div style="flex:1 1 30%; min-width:5rem;">
+                                <div
+                                    style="height:2rem; border-radius:.4rem; background:#b7b7b7; box-shadow:var(--shadow-soft);">
+                                </div>
+                                <div style="font-size:.7rem; margin-top:.25rem;">Concrete Smoke</div>
+                            </div>
+                            <div style="flex:1 1 30%; min-width:5rem;">
+                                <div
+                                    style="height:2rem; border-radius:.4rem; background:#4a4a4a; box-shadow:var(--shadow-soft);">
+                                </div>
+                                <div style="font-size:.7rem; margin-top:.25rem;">Graphite Trim</div>
+                            </div>
+                        </div>
+
+                        <p style="font-size:.7rem; color:var(--text-mid); line-height:1.4; margin-top:.5rem;">
+                            Use on: exterior masonry/render. Not for PVC frames or bare metal.
+                        </p>
+                    </div>
+
+                    <!-- Low-Yellowing Eggshell / Trim -->
+                    <div class="why-card" style="box-shadow:var(--shadow-card);">
+                        <h3 style="font-size:1rem; font-weight:600; color:var(--text-dark); margin-bottom:.5rem;">
+                            Low-Yellowing Eggshell (Woodwork)
+                        </h3>
+                        <p style="font-size:.9rem; color:var(--text-mid); line-height:1.4;">
+                            Modern eggshell for doors, frames, skirting, bannisters. Resists that old nicotine-yellow
+                            look.
+                        </p>
+
+                        <div style="display:flex; gap:.5rem; margin-top:.75rem; flex-wrap:wrap;">
+                            <div style="flex:1 1 30%; min-width:5rem;">
+                                <div
+                                    style="height:2rem; border-radius:.4rem; background:#ffffff; border:1px solid #ccc; box-shadow:var(--shadow-soft);">
+                                </div>
+                                <div style="font-size:.7rem; margin-top:.25rem;">Classic White</div>
+                            </div>
+                            <div style="flex:1 1 30%; min-width:5rem;">
+                                <div
+                                    style="height:2rem; border-radius:.4rem; background:#e0dfd5; box-shadow:var(--shadow-soft);">
+                                </div>
+                                <div style="font-size:.7rem; margin-top:.25rem;">Soft Ivory</div>
+                            </div>
+                            <div style="flex:1 1 30%; min-width:5rem;">
+                                <div
+                                    style="height:2rem; border-radius:.4rem; background:#3b3b3b; box-shadow:var(--shadow-soft);">
+                                </div>
+                                <div style="font-size:.7rem; margin-top:.25rem;">Rail Black</div>
+                            </div>
+                        </div>
+
+                        <p style="font-size:.7rem; color:var(--text-mid); line-height:1.4; margin-top:.5rem;">
+                            Use on: interior wood &amp; trim. Also bannisters (properly keyed).
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- === OTHER FINISH PICKER (dropdown + add to basket) === -->
+                <div
+                    style="border:1px solid var(--border-soft); border-radius:var(--radius-btn); background:#fff; box-shadow:var(--shadow-soft); padding:1rem;">
+                    <label for="otherFinishSelect"
+                        style="display:block; font-size:.8rem; font-weight:600; color:var(--text-dark); margin-bottom:.5rem;">
+                        Choose a finish / system (Kitchen &amp; Bathroom, Masonry, Eggshell, etc.)
+                    </label>
+
+                    <select id="otherFinishSelect"
+                        style="width:100%; max-width:22rem; font-size:.9rem; padding:.6rem .6rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft);">
+                        <option value="">Select a system…</option>
+                    </select>
+
+
+                    <div id="otherFinishPreviewBlock"
+                        style="margin-top:1rem; display:none; grid-template-columns:auto 1fr auto; align-items:center; gap:1rem; font-size:.8rem; line-height:1.4;">
+                        <div id="otherFinishPreviewSwatch"
+                            style="width:3rem; height:3rem; border-radius:.5rem; box-shadow:var(--shadow-soft); border:1px solid #ccc;">
+                        </div>
+
+                        <div style="display:grid; gap:.25rem;">
+                            <div style="color:var(--text-dark); font-weight:600;" id="otherFinishPreviewName"></div>
+                            <div style="color:var(--text-mid); font-size:.75rem;">
+                                <span id="otherFinishPreviewUse"></span><br />
+                                <span id="otherFinishPreviewPair"></span>
+                            </div>
+                            <div style="color:var(--text-mid); font-size:.7rem;">
+                                <span id="otherFinishPreviewMeta"></span>
+                            </div>
+                        </div>
+
+                        <button id="addOtherFinishToBasketBtn" class="btn btn-primary"
+                            style="font-size:.8rem; line-height:1.2; cursor:pointer; white-space:nowrap;">
+                            Add to basket
+                        </button>
+                    </div>
+                </div>
+
+                <!-- === FULL COLOUR PICKER / DROPDOWN === -->
+                <div
+                    style="border:1px solid var(--border-soft); border-radius:var(--radius-btn); background:#fff; box-shadow:var(--shadow-soft); padding:1rem;">
+                    <label for="colourSelect"
+                        style="display:block; font-size:.8rem; font-weight:600; color:var(--text-dark); margin-bottom:.5rem;">
+                        Browse full colour list (all Heritage + Scrubbable shades)
+                    </label>
+
+                    <select id="colourSelect"
+                        style="width:100%; max-width:22rem; font-size:.9rem; padding:.6rem .6rem; border-radius:var(--radius-btn); border:1px solid var(--border-soft); background:#fff; box-shadow:var(--shadow-soft);">
+                        <option value="">Select a colour…</option>
+                    </select>
+
+
+                    <div id="colourPreviewBlock"
+                        style="margin-top:1rem; display:none; grid-template-columns:auto 1fr auto; align-items:center; gap:1rem; font-size:.8rem; line-height:1.4;">
+                        <div id="colourPreviewSwatch"
+                            style="width:3rem; height:3rem; border-radius:.5rem; box-shadow:var(--shadow-soft); border:1px solid #ccc;">
+                        </div>
+
+                        <div style="display:grid; gap:.25rem;">
+                            <div style="color:var(--text-dark); font-weight:600;" id="colourPreviewName"></div>
+                            <div style="color:var(--text-mid); font-size:.75rem;">
+                                <span id="colourPreviewUse"></span><br />
+                                <span id="colourPreviewPair"></span>
+                            </div>
+                            <div style="color:var(--text-mid); font-size:.7rem;">
+                                <span id="colourPreviewHex"></span>
+                            </div>
+                        </div>
+
+                        <button id="addColourToBasketBtn" class="btn btn-primary"
+                            style="font-size:.8rem; line-height:1.2; cursor:pointer; white-space:nowrap;">
+                            Add to basket
+                        </button>
+                    </div>
+                </div>
+
+                <div style="font-size:.8rem; color:var(--text-mid); line-height:1.4;">
+                    Not sure which system you need (steam-resistant, masonry, stain block etc)?
+                    <a href="contact.html" style="color:var(--text-dark); font-weight:600; text-decoration:none;">Ask
+                        us</a>
+                    and we’ll spec it and quote to apply it.
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== CTA STRIP ====== -->
+        <section class="cta-strip">
+            <div class="container cta-inner">
+                <div class="cta-text">
+                    <p class="cta-eyebrow">Want us to just handle it?</p>
+                    <p class="cta-line">
+                        We can prep, paint and leave the place spotless.
+                        Ask for “Supply &amp; apply it for me” in the basket.
+                    </p>
+                </div>
+
+                <a class="btn btn-dark" href="contact.html">Book a visit</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <span class="brand-main">PainterPro</span>
+                    <span class="brand-sub">Fife</span>
+                </div>
+                <p class="footer-tag">
+                    Clean, reliable painting &amp; decorating across Fife.
+                </p>
+                <p class="footer-small">
+                    Fully insured. Domestic &amp; commercial.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="catalogue.html">Paint Catalogue</a></li>
+                    <li><a href="basket.html">Basket</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Get a quote</h4>
+                <ul>
+                    <li><a href="contact.html">Request a visit</a></li>
+                    <li><a href="tel:+440000000000">Call 1234 567 890</a></li>
+                    <li><a href="mailto:info@painterprofife.co.uk">info@painterprofife.co.uk</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Areas we cover</h4>
+                <ul>
+                    <li>Leven</li>
+                    <li>Kirkcaldy</li>
+                    <li>Glenrothes</li>
+                    <li>St Andrews</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p class="legal">© PainterPro Fife. All rights reserved.</p>
+                <p class="legal"><a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ====== COLOUR PALETTE MODAL ====== -->
+    <div id="colourModal" style="
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,.4);
+        display:none;
+        align-items:center;
+        justify-content:center;
+        padding:1rem;
+        z-index:9999;
+     ">
+
+        <div style="
+        background:#fff;
+        border-radius:var(--radius-card,1rem);
+        box-shadow:var(--shadow-card);
+        max-width:900px;
+        width:100%;
+        max-height:90vh;
+        overflow:auto;
+        padding:1rem 1rem 2rem;
+        display:grid;
+        gap:1rem;
+        font-size:.9rem;
+        line-height:1.4;
+    ">
+
+            <!-- modal header -->
+            <div style="
+            display:flex;
+            justify-content:space-between;
+            align-items:flex-start;
+            gap:1rem;
+        ">
+                <div style="display:grid; gap:.5rem;">
+                    <div id="modalRangeName" style="font-size:1rem; font-weight:600; color:var(--text-dark);">
+                        <!-- injected -->
+                    </div>
+                    <div id="modalRangeNote" style="font-size:.8rem; color:var(--text-mid); line-height:1.4;">
+                        <!-- injected -->
+                    </div>
+                </div>
+
+                <button id="closeColourModal" style="
+                    background:#000;
+                    color:#fff;
+                    border:none;
+                    border-radius:var(--radius-btn);
+                    font-size:.8rem;
+                    line-height:1.2;
+                    padding:.5rem .6rem;
+                    cursor:pointer;
+                    flex-shrink:0;
+                ">
+                    ✕
+                </button>
+            </div>
+
+            <hr style="border:none; border-top:1px solid var(--border-soft); margin:0;" />
+
+            <!-- colour cards go here -->
+            <div id="modalColours" style="
+                display:grid;
+                gap:1rem;
+                grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));
+             ">
+                <!-- injected cards -->
+            </div>
+        </div>
+    </div>
+    <!-- ====== /COLOUR PALETTE MODAL ====== -->
+
+
+</body>
+
+</html>
